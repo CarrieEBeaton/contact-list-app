@@ -1,17 +1,23 @@
-import { TestBed, async } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './home-page/home-page.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        HttpClientModule
+        HttpClientModule,
+        NgbModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        HomePageComponent
       ],
     }).compileComponents();
   }));

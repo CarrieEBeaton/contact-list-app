@@ -1,24 +1,18 @@
-<div class="scroll-container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Contact Application</a>
-        <button class="navbar-toggler" type="button" (click)="navbarCollapsed = !navbarCollapsed" data-toggle="collapse"
-            data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Contact Application</a>
+    <button class="navbar-toggler" type="button" (click)="navbarCollapsed = !navbarCollapsed" data-toggle="collapse"
+        data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarContent" [ngbCollapse]="navbarCollapsed">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" routerLink="/home">Home <span class="sr-only">Home</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/contacts">Contact List <span class="sr-only">Contact List</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="main-scroll">
-        <router-outlet></router-outlet>
+    <div class="collapse navbar-collapse" id="navbarContent" [ngbCollapse]="navbarCollapsed">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/home">Home <span class="sr-only">Home</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/contacts">Contact List <span class="sr-only">Contact List</span></a>
+            </li>
+        </ul>
     </div>
-<div>
+</nav>
