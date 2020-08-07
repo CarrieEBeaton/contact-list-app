@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ContactService } from './contacts/services/contact.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'contact-list-app';
+
+  constructor(private contactService: ContactService) {
+   this.contactService.getContacts().subscribe(contacts =>  console.log(contacts));
+    
+  }
 }
