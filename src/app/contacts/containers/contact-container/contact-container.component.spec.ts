@@ -1,15 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ContactContainerComponent } from './contact-container.component';
-import { ContactListComponent } from '../../contact-list/contact-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { provideMockStore } from '@ngrx/store/testing';
-import { ContactMock } from '../../services/testing/contact-mock';
-import { AppState } from 'src/app/app-state/app.state';
-import { ContactState } from '../../services/store/state/contact.state';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
+import { AppState } from 'src/app/app-state/app.state';
+import { ContactListComponent } from '../../contact-list/contact-list.component';
+import { SearchPipe } from '../../pipes/search.pipe';
+import { ContactState } from '../../services/store/state/contact.state';
+import { ContactMock } from '../../services/testing/contact-mock';
+import { ContactContainerComponent } from './contact-container.component';
+
 
 const mockContactState: ContactState = {
   selectedContact: null,
@@ -28,13 +30,17 @@ describe('ContactContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NgbModule, StoreModule.forRoot([]), EffectsModule.forRoot([])],
-      declarations: [ ContactContainerComponent, ContactListComponent ],
+      imports: [NgbModule, 
+        FormsModule, 
+        ReactiveFormsModule, 
+        StoreModule.forRoot([]), 
+        EffectsModule.forRoot([])],
+      declarations: [ContactContainerComponent, ContactListComponent, SearchPipe],
       providers: [
         provideMockStore({ initialState })
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

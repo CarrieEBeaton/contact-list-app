@@ -1,1 +1,1 @@
-<app-contact-list [contacts]="contacts$ | async"></app-contact-list>
+<app-contact-list [contacts]="contacts$ | async" (results)="search($event)"></app-contact-list>

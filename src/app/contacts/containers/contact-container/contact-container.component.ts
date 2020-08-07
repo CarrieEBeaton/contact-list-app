@@ -3,6 +3,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app-state/app.state';
 import { GetContacts } from '../../services/store/actions/contact.actions';
 import { getContacts } from '../../services/store/selectors/contact.selectors';
+import { startWith, map } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { ContactMock } from '../../services/testing/contact-mock';
 
 @Component({
   selector: 'app-contact-container',
@@ -12,7 +15,9 @@ import { getContacts } from '../../services/store/selectors/contact.selectors';
 export class ContactContainerComponent implements OnInit {
 
   contacts$ = this.store.select(getContacts);
-  constructor(public store: Store<AppState>) { }
+
+  constructor(public store: Store<AppState>) {
+  }
 
   ngOnInit() {
     this.store.dispatch(new GetContacts());
