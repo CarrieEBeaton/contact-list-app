@@ -36,8 +36,8 @@ describe('ContactEffects', () => {
         );
 
         //Act
-        const action = new ContactAction.GetContact();
-        const result = new ContactAction.GetContactSuccess(ContactMock.CONTACTS);
+        const action = new ContactAction.GetContacts();
+        const result = new ContactAction.GetContactsSuccess(ContactMock.CONTACTS);
 
         actions = hot('-a--', { a: action});
         const expected = cold('-(b)', { b: result});
