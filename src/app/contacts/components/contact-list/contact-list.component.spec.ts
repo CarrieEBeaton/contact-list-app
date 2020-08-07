@@ -2,11 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactListComponent } from './contact-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ContactMock } from '../services/testing/contact-mock';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SearchPipe } from '../pipes/search.pipe';
+import { SearchPipe } from '../../pipes/search.pipe';
+import { ContactMock } from '../../services/testing/contact-mock';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContactListComponent', () => {
   let component: ContactListComponent;
@@ -15,7 +16,12 @@ describe('ContactListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NgbModule, ReactiveFormsModule, FormsModule],
+      imports: [
+        NgbModule, 
+        ReactiveFormsModule, 
+        FormsModule, 
+        RouterTestingModule
+      ],
       declarations: [ ContactListComponent, SearchPipe ]
     })
     .compileComponents();

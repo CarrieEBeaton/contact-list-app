@@ -6,12 +6,12 @@ import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { AppState } from 'src/app/app-state/app.state';
-import { ContactListComponent } from '../../contact-list/contact-list.component';
 import { SearchPipe } from '../../pipes/search.pipe';
 import { ContactState } from '../../services/store/state/contact.state';
 import { ContactMock } from '../../services/testing/contact-mock';
 import { ContactContainerComponent } from './contact-container.component';
-
+import { ContactListComponent } from '../../components/contact-list/contact-list.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const mockContactState: ContactState = {
   selectedContact: null,
@@ -30,11 +30,14 @@ describe('ContactContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NgbModule, 
+      imports: [
+        NgbModule, 
         FormsModule, 
         ReactiveFormsModule, 
         StoreModule.forRoot([]), 
-        EffectsModule.forRoot([])],
+        EffectsModule.forRoot([]),
+        RouterTestingModule
+      ],
       declarations: [ContactContainerComponent, ContactListComponent, SearchPipe],
       providers: [
         provideMockStore({ initialState })

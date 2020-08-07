@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Contact } from '../models/contact';
 import { FormControl } from '@angular/forms';
-import { startWith, map } from 'rxjs/operators';
+import { Contact } from '../../models/contact';
 
 @Component({
   selector: 'app-contact-list',

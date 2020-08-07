@@ -1,15 +1,16 @@
-import { NgModule } from "@angular/core";
-import { StoreModule } from '@ngrx/store';
-import { contactReducers } from './services/store/reducers/contact.reducer';
-import { EffectsModule } from '@ngrx/effects';
-import { ContactEffects } from './services/store/effects/contact.effects';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ContactContainerComponent } from './containers/contact-container/contact-container.component';
-import { ContactListComponent } from './contact-list/contact-list.component';
-import { ContactRoutingModule } from './contact-routing.module';
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { ContactEditComponent } from './components/contact-edit/contact-edit.component';
+import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { ContactRoutingModule } from './contact-routing.module';
+import { ContactContainerComponent } from './containers/contact-container/contact-container.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { ContactEffects } from './services/store/effects/contact.effects';
+import { contactReducers } from './services/store/reducers/contact.reducer';
 
 @NgModule({
     imports: [
@@ -21,6 +22,11 @@ import { SearchPipe } from './pipes/search.pipe';
         EffectsModule.forFeature([ContactEffects]),
         ContactRoutingModule
     ],
-    declarations: [ContactContainerComponent, ContactListComponent, SearchPipe]
+    declarations: [
+        ContactContainerComponent,
+         ContactListComponent, 
+         SearchPipe, 
+         ContactEditComponent
+        ]
 })
 export class ContactModule { }
