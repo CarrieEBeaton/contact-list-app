@@ -1,15 +1,12 @@
-import { Component } from '@angular/core';
-import { ContactService } from './contacts/services/contact.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor(private contactService: ContactService) {
-   this.contactService.getContacts().subscribe(contacts =>  console.log(contacts));
-    
-  }
+  constructor() { }
+  ngOnInit() { }
 }

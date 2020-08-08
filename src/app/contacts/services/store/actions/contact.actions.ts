@@ -3,8 +3,11 @@ import { Contact } from 'src/app/contacts/models/contact';
 
 export enum ContactActionTypes {
     GetContacts = '[Contact] Get Contacts',
-    GetContactSuccess = '[Contact] Get Contacts Success',
-    GetContactFailure = '[Contact] Get Contacts Failure'
+    GetContactsSuccess = '[Contact] Get Contacts Success',
+    GetContactsFailure = '[Contact] Get Contacts Failure',
+    CreateContact = '[Contact] Create Contacts',
+    CreateContactSuccess = '[Contact] Create Contacts Success',
+    CreateContactFailure = '[Contact] Create Contacts Failure'
 }
 
 export class GetContacts implements Action {
@@ -12,18 +15,39 @@ export class GetContacts implements Action {
 }
 
 export class GetContactsSuccess implements Action {
-    readonly type = ContactActionTypes.GetContactSuccess;
+    readonly type = ContactActionTypes.GetContactsSuccess;
 
     constructor(public payload: Contact[]) { }
 }
 
 export class GetContactsFailure implements Action {
-    readonly type = ContactActionTypes.GetContactFailure;
+    readonly type = ContactActionTypes.GetContactsFailure;
 
     constructor(public payload: string) { }
 }
 
+export class CreateContact implements Action {
+    readonly type = ContactActionTypes.CreateContact;
+    constructor(public payload: Contact) { }
+}
+
+export class CreateContactSuccess implements Action {
+    readonly type = ContactActionTypes.CreateContactSuccess;
+
+    constructor(public payload: Contact) { }
+}
+
+export class CreateContactFailure implements Action {
+    readonly type = ContactActionTypes.CreateContactFailure;
+
+    constructor(public payload: string) { }
+}
+
+
 export type ContactActions =
     | GetContacts
     | GetContactsSuccess
-    | GetContactsFailure;
+    | GetContactsFailure
+    | CreateContact
+    | CreateContactSuccess
+    | CreateContactFailure;

@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
-import { ContactService } from '../../contact.service';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { GetContacts, ContactActionTypes, GetContactsSuccess, GetContactsFailure } from '../actions/contact.actions';
-import { catchError, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { Contact } from 'src/app/contacts/models/contact';
-import { of, Observable } from 'rxjs';
+import { ContactService } from '../../contact.service';
+import { ContactActionTypes, CreateContact, GetContacts, GetContactsFailure, GetContactsSuccess, CreateContactSuccess } from '../actions/contact.actions';
+import * as createContact from './../actions/contact.actions';
 
 @Injectable()
 export class ContactEffects {
@@ -16,12 +17,27 @@ export class ContactEffects {
     @Effect()
     getContacts$ = this.actions.pipe(
         ofType<GetContacts>(ContactActionTypes.GetContacts),
-        switchMap(() =>
+        mergeMap(() =>
             this.contactService.getContacts().pipe(
-                switchMap((contact: Contact[]) => of(new GetContactsSuccess(contact))),
+                mergeMap((contact: Contact[]) => of(new GetContactsSuccess(contact))),
                 catchError((error: any) => {
                     console.log(error.statusText);
                     return of(new GetContactsFailure(error.statusText))
                 })
             )));
+
+    @Effect()
+    createContact$ = this.actions.pipe(
+        ofType<CreateContact>(ContactActionTypes.CreateContact),
+        map((action: createContact.CreateContact) => action.payload),
+            mergeMap((contact: Contact) => 
+            this.contactService.createContact(contact).pipe(
+                map((newContact: Contact) => (new CreateContactSuccess(newContact))),
+                catchError((error: any) => {
+                    console.log(error.statusText);
+                    return of(new GetContactsFailure(error.statusText))
+                })
+            )
+        ));
+    
 }
