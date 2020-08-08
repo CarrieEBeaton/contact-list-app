@@ -12,7 +12,7 @@ export function alertReducer(state: AlertState = initialAlertState, action: Aler
     switch (action.type) {
         case AlertActionTypes.AddAlert: {
             let updatedAlerts: Alert[] = [];
-            updatedAlerts = [...state.alerts];
+            updatedAlerts = state.alerts.map(alerts => Object.assign({}, alerts));
             updatedAlerts.push(action.payload);
             return {
                 ...state,
