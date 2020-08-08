@@ -13,6 +13,7 @@ import { appReducers } from './app-state/app.reducers';
 import { CommonModule } from '@angular/common';
 import { AlertsComponent } from './alerts/alerts.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     HeaderComponent,
     HomePageComponent,
     AlertsComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

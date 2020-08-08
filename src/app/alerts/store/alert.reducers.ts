@@ -8,7 +8,7 @@ export const initialAlertState: AlertState = {
     alerts: []
 }
 
-export function reducer(state: AlertState = initialAlertState, action: AlertAction): AlertState {
+export function alertReducer(state: AlertState = initialAlertState, action: AlertAction): AlertState {
     switch (action.type) {
         case AlertActionTypes.AddAlert: {
             return {
