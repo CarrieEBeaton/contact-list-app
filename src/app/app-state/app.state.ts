@@ -1,13 +1,16 @@
-import { ContactState } from '../contacts/services/store/state/contact.state';
+import { ContactState, intialContactState } from '../contacts/services/store/state/contact.state';
+import { AlertState, initialAlertState } from '../alerts/store/alert.reducers';
 
 export interface AppState {
     loading: boolean;
+    alerts: AlertState;
     contacts: ContactState
 }
 
 export const initialAppState: AppState = {
     loading: false,
-    contacts: null
+    alerts: initialAlertState,
+    contacts: intialContactState
 }
 
 export function getInitialState(): AppState {

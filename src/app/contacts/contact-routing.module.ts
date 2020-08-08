@@ -1,7 +1,7 @@
-import { ContactContainerComponent } from "./containers/contact-container/contact-container.component";
-import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ContactEditComponent } from './components/contact-edit/contact-edit.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ContactContainerComponent } from "./containers/contact-container/contact-container.component";
+import { ContactEditContainerComponent } from './containers/contact-edit-container/contact-edit-container.component';
 
 const routes: Routes = [
     {
@@ -10,7 +10,7 @@ const routes: Routes = [
     },
     {
         path: 'create',
-        component: ContactEditComponent
+        component: ContactEditContainerComponent
     }
 ];
 

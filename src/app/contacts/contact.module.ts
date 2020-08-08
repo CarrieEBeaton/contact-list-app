@@ -11,6 +11,7 @@ import { ContactContainerComponent } from './containers/contact-container/contac
 import { SearchPipe } from './pipes/search.pipe';
 import { ContactEffects } from './services/store/effects/contact.effects';
 import { contactReducers } from './services/store/reducers/contact.reducer';
+import { ContactEditContainerComponent } from './containers/contact-edit-container/contact-edit-container.component';
 
 @NgModule({
     imports: [
@@ -26,7 +27,7 @@ import { contactReducers } from './services/store/reducers/contact.reducer';
         ContactContainerComponent,
          ContactListComponent, 
          SearchPipe, 
-         ContactEditComponent
+         ContactEditComponent, ContactEditContainerComponent
         ]
 })
 export class ContactModule { }

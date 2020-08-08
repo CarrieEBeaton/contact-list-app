@@ -1,11 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GenericValidator } from 'src/app/shared/validators/generic.validator';
-import { Contact } from '../../models/contact';
-import { phoneNumberValidator } from 'src/app/shared/validators/phone-number.validator';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app-state/app.state';
-import { CreateContact } from '../../services/store/actions/contact.actions';
+import { GenericValidator } from 'src/app/shared/validators/generic.validator';
+import { phoneNumberValidator } from 'src/app/shared/validators/phone-number.validator';
+import { Contact } from '../../models/contact';
 
 @Component({
   selector: 'app-contact-edit',
@@ -22,7 +21,7 @@ export class ContactEditComponent implements OnInit {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
-  constructor(private formBuilder: FormBuilder, public store: Store<AppState>) {
+  constructor(private formBuilder: FormBuilder) {
     this.createValiationMessages();
 
   }
@@ -78,7 +77,7 @@ export class ContactEditComponent implements OnInit {
       const contact: Contact = Object.assign({}, this.contactForm.value);
 
       if (!contact._id) {
-        this.store.dispatch(new CreateContact(contact));
+        this.create.emit(contact);
       }
     }
   }

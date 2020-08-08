@@ -1,0 +1,7 @@
+<div *ngIf="alerts | async as alertDisplay">
+    <p *ngFor="let alert of alertDisplay; let i = index">
+        <ngb-alert id="alert" insert-alert-icon [type]="alert.type" (closeAlert)="closeAlert(i, alertDisplay)">
+            {{alert.message}}
+        </ngb-alert>
+    </p>
+</div>
