@@ -20,8 +20,7 @@ import { HeaderComponent } from './navigation/header/header.component';
     HeaderComponent,
     HomePageComponent,
     ErrorPageComponent,
-    LoadingComponent,
-
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { ContactEffects } from './services/store/effects/contact.effects';
 import { contactReducers } from './services/store/reducers/contact.reducer';
 import { ContactEditContainerComponent } from './containers/contact-edit-container/contact-edit-container.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { ContactEditContainerComponent } from './containers/contact-edit-contain
         FormsModule,
         StoreModule.forFeature('contacts', contactReducers),
         EffectsModule.forFeature([ContactEffects]),
-        ContactRoutingModule
+        ContactRoutingModule,
+        SharedModule
     ],
     declarations: [
         ContactContainerComponent,

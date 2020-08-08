@@ -13,9 +13,13 @@ export class ContactListComponent implements OnInit {
   @Output() results = new EventEmitter<any>();
   filter = new FormControl('');
 
-  constructor() {
+  ngOnInit() {
   }
 
-  ngOnInit() {
+
+
+  delete() {
+    // this.open();
+    console.log('emit delete');
   }
 }
