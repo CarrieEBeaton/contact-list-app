@@ -21,6 +21,7 @@
                                     <th scope="col">Company</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Phone</th>
+                                    <th scope="col">Address</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,8 +43,12 @@
                                         <ngb-highlight class="ml-2" [result]="contact.email" [term]="filter.value">
                                         </ngb-highlight>
                                     </td>
-                                    <td data-title="phone">
+                                    <td>
                                         <ngb-highlight class="ml-2" [result]="contact.phone" [term]="filter.value">
+                                        </ngb-highlight>
+                                    </td>
+                                    <td>
+                                        <ngb-highlight class="ml-2" [result]="contact.address" [term]="filter.value">
                                         </ngb-highlight>
                                     </td>
                                 </tr>
