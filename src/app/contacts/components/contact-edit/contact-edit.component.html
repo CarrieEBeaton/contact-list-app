@@ -1,1 +1,51 @@
-<p>contact-edit works!</p>
+<div class="card">
+    <div class="card-header">
+        Create Contact
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="saveContact()" [formGroup]="contactForm">
+            <fieldset>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="firstName">First Name</label>
+                    <div class="col-md-9">
+                        <input [ngClass]="{'is-invalid': displayMessage.firstName}" class="form-control" id="firstName"
+                        placeholder="First Name (required)" [formControlName]="'firstName'" (blur)="blur()"/>
+                        <span class="invalid-feedback" *ngIf="displayMessage.firstName">{{displayMessage.firstName}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="lastName">Last Name</label>
+                    <div class="col-md-9">
+                        <input [ngClass]="{'is-invalid': displayMessage.lastName}" class="form-control" id="lastName"
+                        placeholder="Last Name (required)" [formControlName]="'lastName'" (blur)="blur()"/>
+                        <span class="invalid-feedback" *ngIf="displayMessage.lastName">{{displayMessage.lastName}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="company">Company</label>
+                    <div class="col-md-9">
+                        <input [ngClass]="{'is-invalid': displayMessage.company}" class="form-control" id="company"
+                        placeholder="Company Name (required)" [formControlName]="'company'" (blur)="blur()"/>
+                        <span class="invalid-feedback" *ngIf="displayMessage.company">{{displayMessage.company}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="email">Email</label>
+                    <div class="col-md-9">
+                        <input [ngClass]="{'is-invalid': displayMessage.email}" class="form-control" id="email"
+                        placeholder="Email Name (required)" [formControlName]="'email'" (blur)="blur()"/>
+                        <span class="invalid-feedback" *ngIf="displayMessage.email">{{displayMessage.email}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="phone">Phone</label>
+                    <div class="col-md-9">
+                        <input [ngClass]="{'is-invalid': displayMessage.phone}" class="form-control" id="phone"
+                        placeholder="Phone (required)" [formControlName]="'phone'" (blur)="blur()"/>
+                        <span class="invalid-feedback" *ngIf="displayMessage.phone">{{displayMessage.phone}}</span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

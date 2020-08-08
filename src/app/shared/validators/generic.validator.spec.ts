@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { async, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ContactMock } from '../contacts/services/testing/contact-mock';
+import { ContactMock } from '../../contacts/services/testing/contact-mock';
 import { GenericValidator } from './generic.validator';
 
 describe('GenericValidator', () => {
