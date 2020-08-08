@@ -89,7 +89,7 @@ describe('ContactEffects', () => {
 
 
         actions = hot('-a----', { a: action});
-        const expected = cold('-(bcde)', { b: alertResult, c: contactResult, d: redirectResult, e: hideLoadingResult});
+        const expected = cold('-(bcde)', { b: hideLoadingResult, c: alertResult, d: contactResult, e: redirectResult });
         //Assert
         expect(effects.createContact$).toBeObservable(expected);
     });
