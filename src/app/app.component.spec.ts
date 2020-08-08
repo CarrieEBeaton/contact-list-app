@@ -5,12 +5,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { AlertsComponent } from './alerts/alerts.component';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoadingComponent } from './loading/loading.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { initialState } from './shared/testing/initalState-mock';
-import { LoadingComponent } from './loading/loading.component';
+import { AlertModule } from './alerts/alert.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -20,13 +20,13 @@ describe('AppComponent', () => {
         HttpClientModule,
         NgbModule,
         StoreModule.forRoot([]),
-        EffectsModule.forRoot([])
+        EffectsModule.forRoot([]),
+        AlertModule
       ],
       declarations: [
         AppComponent,
         HeaderComponent,
         HomePageComponent,
-        AlertsComponent,
         LoadingComponent
       ],
       providers: [

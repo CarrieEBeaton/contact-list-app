@@ -14,7 +14,7 @@ import { ContactContainerComponent } from './contact-container.component';
 describe('ContactContainerComponent', () => {
   let component: ContactContainerComponent;
   let fixture: ComponentFixture<ContactContainerComponent>;
-  const initialState = ContactMock.CONTACTS;
+  const initialState = [ContactMock.CONTACTS];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -45,7 +45,14 @@ describe('ContactContainerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call store dispatch on ngOnInit ', () => {
+  it('should not call store dispatch on ngOnInit if contacts are in the list', () => {
+    const storeDispatch = spyOn(component.store, 'dispatch').and.callThrough();
+    component.ngOnInit();
+    expect(storeDispatch).not.toHaveBeenCalled();
+  });
+
+  it('should call store dispatch on ngOnInit if no contacts are in the list', () => {
+    component.contacts$ = of([]);
     const storeDispatch = spyOn(component.store, 'dispatch').and.callThrough();
     component.ngOnInit();
     expect(storeDispatch).toHaveBeenCalled();

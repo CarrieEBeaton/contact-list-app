@@ -11,6 +11,9 @@ export const initialAlertState: AlertState = {
 export function alertReducer(state: AlertState = initialAlertState, action: AlertAction): AlertState {
     switch (action.type) {
         case AlertActionTypes.AddAlert: {
+            let updatedAlerts: Alert[] = [];
+            updatedAlerts = [...state.alerts];
+            updatedAlerts.push(action.payload);
             return {
                 ...state,
                 alerts: [...state.alerts.concat(action.payload)]

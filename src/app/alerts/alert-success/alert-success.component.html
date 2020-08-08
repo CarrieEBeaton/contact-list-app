@@ -1,0 +1,8 @@
+<div *ngIf="alerts | async as alertDisplay">
+    <p *ngFor="let alert of alertDisplay; let i = index">
+        <ngb-toast *ngIf="alert.type === 'success'" class="bg-success text-light" [autohide]="true"
+            [delay]="3000" (hide)="closeAlert(alert)">
+            {{alert.message}}
+        </ngb-toast>
+    </p>
+</div>

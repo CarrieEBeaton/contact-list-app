@@ -1,5 +1,6 @@
-import { intialContactState, ContactState } from '../state/contact.state';
+import { Contact } from 'src/app/contacts/models/contact';
 import { ContactActions, ContactActionTypes } from '../actions/contact.actions';
+import { ContactState, intialContactState } from '../state/contact.state';
 
 
 export function contactReducers(state: ContactState = intialContactState, action: ContactActions): ContactState {
@@ -17,9 +18,13 @@ export function contactReducers(state: ContactState = intialContactState, action
             }
         }
         case ContactActionTypes.CreateContactSuccess: {
+            let updatedContacts: Contact[] = [];
+            updatedContacts = [...state.contacts];
+            updatedContacts.push(action.payload);
             return {
                 ...state,
-                selectedContact: action.payload
+                selectedContact: action.payload,
+                contacts: updatedContacts
             }
         }
         case ContactActionTypes.CreateContactFailure: {

@@ -6,15 +6,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { initialState } from './../shared/testing/initalState-mock';
-import { AlertsComponent } from './alerts.component';
-import { Alert } from './models/alert';
-import { ALERT } from '../shared/testing/alert-mock';
+import { ALERTERROR } from '../../shared/testing/alert-mock';
+import { initialState } from './../../shared/testing/initalState-mock';
+import { AlertOtherComponent } from './alert-other.component';
 
-describe('AlertsComponent', () => {
+describe('AlertOtherComponent', () => {
 
-    let component: AlertsComponent;
-    let fixture: ComponentFixture<AlertsComponent>;
+    let component: AlertOtherComponent;
+    let fixture: ComponentFixture<AlertOtherComponent>;
     let debugElement: DebugElement;
 
     beforeEach(async(() => {
@@ -25,7 +24,7 @@ describe('AlertsComponent', () => {
                 EffectsModule.forRoot([])
             ],
             declarations: [
-                AlertsComponent
+              AlertOtherComponent
             ],
             providers: [
                 provideMockStore({ initialState })
@@ -34,24 +33,24 @@ describe('AlertsComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(AlertsComponent);
+        fixture = TestBed.createComponent(AlertOtherComponent);
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
         fixture.detectChanges();
       });
 
     it('should create the app', () => {
-        const fixture = TestBed.createComponent(AlertsComponent);
+        const fixture = TestBed.createComponent(AlertOtherComponent);
         const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     });
 
     it('should show success alert', () => {
-        component.alerts = of(ALERT);
+        component.alerts = of([ALERTERROR]);
         fixture.detectChanges();
         const ngbAlert = debugElement.query(By.css('#alert'));
         expect(ngbAlert).toBeDefined();
-        expect(ngbAlert.attributes['ng-reflect-type']).toBe('success');
+        expect(ngbAlert.attributes['ng-reflect-type']).toBe('danger');
     }); 
 
 });

@@ -79,7 +79,7 @@ export class ContactEffects {
     redirectToContactList$ = this.actions.pipe(
         ofType(ContactActionTypes.ContactListRedirect),
         tap(() => {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/contacts']);
         })
     )
 
