@@ -9,6 +9,7 @@ import { ContactMock } from '../../../../shared/testing/contact-mock';
 import { ContactActions } from '../actions/contact.actions';
 import * as ContactAction from './../actions/contact.actions';
 import { ContactEffects } from './contact.effects';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContactEffects', () => {
     let actions: Observable<ContactActions>;
@@ -16,7 +17,7 @@ describe('ContactEffects', () => {
     let service: ContactService;
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
+            imports: [HttpClientTestingModule, RouterTestingModule],
             providers: [ContactEffects,
                 provideMockActions(() => actions)]
         })
