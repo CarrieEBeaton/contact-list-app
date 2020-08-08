@@ -32,11 +32,11 @@ export class ContactEffects {
                 catchError((error: any) => {
                     const alert: Alert = {
                         type: 'danger',
-                        message: `Error ${error.status} ${error.statusText}: ${error.message}` 
+                        message: error  
                     };
                     return [
                         new AddAlert(alert),
-                        new GetContactsFailure(error.statusText),
+                        new GetContactsFailure(error),
                         new HideLoading()
                     ]
                 })
@@ -60,15 +60,15 @@ export class ContactEffects {
                         new ContactListRedirect(),
                     ]
                 }),
-                catchError((error: HttpErrorResponse) => {
+                catchError((error: string) => {
 
                     const alert: Alert = {
                         type: 'danger',
-                        message: `Error ${error.status} ${error.statusText}: ${error.message}` 
+                        message: error 
                     };
                     return [
                         new AddAlert(alert),
-                        new CreateContactFailure(error.statusText),
+                        new CreateContactFailure(error),
                         new HideLoading()
                     ]
                 })

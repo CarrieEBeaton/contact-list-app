@@ -7,5 +7,5 @@ export const ALERT: Alert[] = [{
 
 export const ALERTERROR: Alert = {
     type: 'danger',
-    message: 'Error 404 Bad Request: Invalid Input Params'
+    message: 'Server error code 404 Bad Request: Invalid Input Param'
 };

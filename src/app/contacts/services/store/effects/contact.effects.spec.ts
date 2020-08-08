@@ -53,7 +53,7 @@ describe('ContactEffects', () => {
 
     it('should add alert, get contact faliure and hide loading on get contact error', () => {
 
-        const mockErrorResponse = {status: 404, statusText: 'Bad Request', message: 'Invalid Input Params'}
+        const mockErrorResponse = `Server error code 404 Bad Request: Invalid Input Param`;
         const error= throwError(mockErrorResponse);
         //Arrange
         spyOn(service, 'getContacts').and.returnValue(
@@ -63,7 +63,7 @@ describe('ContactEffects', () => {
         //Act
         const action = new ContactAction.GetContacts();
         const alertResult = new AlertAction.AddAlert(ALERTERROR);
-        const contactResult = new ContactAction.GetContactsFailure('Bad Request');
+        const contactResult = new ContactAction.GetContactsFailure(mockErrorResponse);
         const hideLoadingResult = new LoadingAction.HideLoading();
 
 
@@ -96,7 +96,7 @@ describe('ContactEffects', () => {
 
     it('should add alert, create contact faliure and hide loading on create contact error', () => {
 
-        const mockErrorResponse = {status: 404, statusText: 'Bad Request', message: 'Invalid Input Params'}
+        const mockErrorResponse = `Server error code 404 Bad Request: Invalid Input Param`;
         const error= throwError(mockErrorResponse);
         //Arrange
         spyOn(service, 'createContact').and.returnValue(
@@ -106,7 +106,7 @@ describe('ContactEffects', () => {
         //Act
         const action = new ContactAction.CreateContact(ContactMock.CONTACTS[0]);
         const alertResult = new AlertAction.AddAlert(ALERTERROR);
-        const contactResult = new ContactAction.CreateContactFailure('Bad Request');
+        const contactResult = new ContactAction.CreateContactFailure(mockErrorResponse);
         const hideLoadingResult = new LoadingAction.HideLoading();
 
 

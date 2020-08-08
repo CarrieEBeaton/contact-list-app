@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Contact } from '../models/contact';
 import { tap, catchError } from 'rxjs/operators';
 
@@ -16,7 +16,9 @@ export class ContactService {
   }
 
   getContacts(): Observable<Contact[]> {
-    return this.http.get<Contact[]>(this.contactUrl);
+    return this.http.get<Contact[]>(this.contactUrl).pipe(
+      catchError(this.handleError)
+    );
   }
 
   createContact(contact: Contact): Observable<Contact> {
@@ -24,4 +26,14 @@ export class ContactService {
     return of(contact);
   }
 
+  handleError(err: HttpErrorResponse) {
+    let errorMessage: string;
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error occured: ${err.error.message}`;
+    } else {
+      errorMessage = `Server error code  ${err.status} ${err.statusText}: ${err.message}`;
+    }
+    console.log(err);
+    return throwError(errorMessage);
+  }
 }
