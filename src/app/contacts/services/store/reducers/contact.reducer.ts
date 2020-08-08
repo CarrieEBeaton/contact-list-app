@@ -30,6 +30,18 @@ export function contactReducers(state: ContactState = intialContactState, action
                 error: action.payload
             }
         }
+        case ContactActionTypes.DeleteContactSuccess: {
+            return {
+                ...state,
+                contacts: state.contacts.filter(contact => contact !== action.payload)
+            }
+        }
+        case ContactActionTypes.DeleteContactFailure: {
+            return {
+                ...state,
+                error: action.payload
+            }
+        }
         default: {
             return state
         }

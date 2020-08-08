@@ -53,7 +53,7 @@
                                         </ngb-highlight>
                                     </td>
                                     <td class="d-flex flex-nowrap flex-row">
-                                        <app-modal [title]="'Delete'" [message]="'Are you sure you want to delete?'" [icon]="'fa fa-trash'" (submit)="delete()"></app-modal>
+                                        <app-modal [title]="'Delete'" [message]="'Are you sure you want to delete?'" [icon]="'fa fa-trash'" [command]="'Delete'" (submit)="delete(contact)"></app-modal>
                                         <button class="btn btn-primary circle m-2" role="button" aria-disabled="true"><i class="fa fa-pencil" aria-hidden="true"></i></button>                                    
                                     </td>
                                 </tr>

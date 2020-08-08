@@ -10,16 +10,14 @@ import { Contact } from '../../models/contact';
 export class ContactListComponent implements OnInit {
 
   @Input() contacts: Contact[];
-  @Output() results = new EventEmitter<any>();
+  @Output() deleteContact = new EventEmitter<Contact>();
+
   filter = new FormControl('');
 
   ngOnInit() {
   }
 
-
-
-  delete() {
-    // this.open();
-    console.log('emit delete');
+  delete(contact: Contact) {
+    this.deleteContact.emit(contact);
   }
 }

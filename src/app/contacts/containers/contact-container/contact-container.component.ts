@@ -5,7 +5,7 @@ import { map, take, tap } from 'rxjs/operators';
 import { AppState } from 'src/app/app-state/app.state';
 import { ShowLoading } from 'src/app/loading/store/loading.action';
 import { Contact } from '../../models/contact';
-import { GetContacts } from '../../services/store/actions/contact.actions';
+import { GetContacts, DeleteContact } from '../../services/store/actions/contact.actions';
 import { getContacts } from '../../services/store/selectors/contact.selectors';
 
 @Component({
@@ -29,6 +29,10 @@ export class ContactContainerComponent implements OnInit, OnDestroy {
         this.store.dispatch(new GetContacts());
       }
     });
+  }
+
+  deleteContact(contact: Contact): void {
+    this.store.dispatch(new DeleteContact(contact));
   }
 
   ngOnDestroy() {

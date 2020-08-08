@@ -26,6 +26,11 @@ export class ContactService {
     return of(contact);
   }
 
+  deleteContact(contact: Contact): Observable<Contact> {
+    console.log('Delete Contact: ' + JSON.stringify(contact));
+    return of(contact);
+  }
+
   handleError(err: HttpErrorResponse) {
     let errorMessage: string;
     if (err.error instanceof ErrorEvent) {

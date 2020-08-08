@@ -11,6 +11,7 @@ export class ModalComponent implements OnInit {
   @Input() title: string;
   @Input() message: string;
   @Input() icon: string;
+  @Input() command: string;
   @Output() submit = new EventEmitter();
 
   closeResult: string;
