@@ -23,4 +23,8 @@ export class ContactContainerComponent implements OnInit {
     this.store.dispatch(new GetContacts());
   }
 
+  newContact(): void {
+    // this.store.dispatch(new CreateContact());
+  }
+
 }

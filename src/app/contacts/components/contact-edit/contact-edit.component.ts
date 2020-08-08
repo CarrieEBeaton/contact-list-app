@@ -71,6 +71,12 @@ export class ContactEditComponent implements OnInit {
   }
 
   saveContact() {
-    console.log('call to save');
+    if (this.contactForm.dirty && this.contactForm.valid) {
+      const contact: Contact = Object.assign({}, this.contactForm.value);
+
+      if (!contact._id) {
+        this.create.emit(contact);
+      }
+    }
   }
 }
