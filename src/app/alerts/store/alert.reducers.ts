@@ -19,7 +19,7 @@ export function alertReducer(state: AlertState = initialAlertState, action: Aler
         case AlertActionTypes.RemoveAlert: {
             return {
                 ...state,
-                alerts: [...state.alerts.filter((item, index) => index !== action.index)]
+                alerts: [...state.alerts.filter((item) => item !== action.payload)]
             }
         }
         default: {

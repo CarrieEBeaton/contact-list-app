@@ -14,7 +14,7 @@ export class AddAlert implements Action {
 
 export class RemoveAlert implements Action {
     readonly type = AlertActionTypes.RemoveAlert;
-    constructor(public index: number, public alerts: Alert[]) {}
+    constructor(public payload: Alert) {}
 }
 
 export type AlertAction =
