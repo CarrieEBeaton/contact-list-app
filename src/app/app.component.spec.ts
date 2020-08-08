@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { initialState } from './shared/testing/initalState-mock';
+import { LoadingComponent } from './loading/loading.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -25,7 +26,8 @@ describe('AppComponent', () => {
         AppComponent,
         HeaderComponent,
         HomePageComponent,
-        AlertsComponent
+        AlertsComponent,
+        LoadingComponent
       ],
       providers: [
         provideMockStore({initialState})

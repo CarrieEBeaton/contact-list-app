@@ -4,10 +4,12 @@ import { of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { Contact } from 'src/app/contacts/models/contact';
 import { ContactService } from '../../contact.service';
-import { ContactActionTypes, CreateContact, GetContacts, GetContactsFailure, GetContactsSuccess, CreateContactSuccess, ContactListRedirect } from '../actions/contact.actions';
+import { ContactActionTypes, CreateContact, GetContacts, GetContactsFailure, GetContactsSuccess, CreateContactSuccess, ContactListRedirect, CreateContactFailure } from '../actions/contact.actions';
 import { AddAlert } from 'src/app/alerts/store/alert.actions';
 import { Alert } from 'src/app/alerts/models/alert';
 import { Router } from '@angular/router';
+import { HideLoading } from 'src/app/loading/store/loading.action';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class ContactEffects {
@@ -23,10 +25,20 @@ export class ContactEffects {
         ofType<GetContacts>(ContactActionTypes.GetContacts),
         mergeMap(() =>
             this.contactService.getContacts().pipe(
-                mergeMap((contact: Contact[]) => of(new GetContactsSuccess(contact))),
+                mergeMap((contact: Contact[]) => [
+                    new GetContactsSuccess(contact),
+                    new HideLoading()
+                ]),
                 catchError((error: any) => {
-                    console.log(error.statusText);
-                    return of(new GetContactsFailure(error.statusText))
+                    const alert: Alert = {
+                        type: 'danger',
+                        message: `Error ${error.status} ${error.statusText}: ${error.message}` 
+                    };
+                    return [
+                        new AddAlert(alert),
+                        new GetContactsFailure(error.statusText),
+                        new HideLoading()
+                    ]
                 })
             )));
 
@@ -42,14 +54,23 @@ export class ContactEffects {
                         message: 'Successfully created contact!'
                     };
                     return [
+                        new HideLoading(),
                         new AddAlert(alert),
                         new CreateContactSuccess(newContact),
-                        new ContactListRedirect()
+                        new ContactListRedirect(),
                     ]
                 }),
-                catchError((error: any) => {
-                    console.log(error.statusText);
-                    return of(new GetContactsFailure(error.statusText))
+                catchError((error: HttpErrorResponse) => {
+
+                    const alert: Alert = {
+                        type: 'danger',
+                        message: `Error ${error.status} ${error.statusText}: ${error.message}` 
+                    };
+                    return [
+                        new AddAlert(alert),
+                        new CreateContactFailure(error.statusText),
+                        new HideLoading()
+                    ]
                 })
             )
         ));

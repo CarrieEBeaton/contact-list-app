@@ -9,6 +9,7 @@ import { of } from 'rxjs';
 import { initialState } from './../shared/testing/initalState-mock';
 import { AlertsComponent } from './alerts.component';
 import { Alert } from './models/alert';
+import { ALERT } from '../shared/testing/alert-mock';
 
 describe('AlertsComponent', () => {
 
@@ -46,11 +47,7 @@ describe('AlertsComponent', () => {
     });
 
     it('should show success alert', () => {
-        const alert: Alert[] = [{
-            type: 'success',
-            message: 'Contact successfully created'
-        }];
-        component.alerts = of(alert);
+        component.alerts = of(ALERT);
         fixture.detectChanges();
         const ngbAlert = debugElement.query(By.css('#alert'));
         expect(ngbAlert).toBeDefined();

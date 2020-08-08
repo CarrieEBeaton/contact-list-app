@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/app-state/app.state';
 import { Store } from '@ngrx/store';
 import { CreateContact } from '../../services/store/actions/contact.actions';
+import { ShowLoading } from 'src/app/loading/store/loading.action';
 
 @Component({
   selector: 'app-contact-edit-container',
@@ -18,6 +19,7 @@ export class ContactEditContainerComponent implements OnInit {
   }
 
   newContact(contact): void {
+    this.store.dispatch(new ShowLoading());
     this.store.dispatch(new CreateContact(contact));
   }
 

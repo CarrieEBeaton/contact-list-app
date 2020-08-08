@@ -6,6 +6,7 @@ import { getContacts } from '../../services/store/selectors/contact.selectors';
 import { startWith, map } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { ContactMock } from '../../../shared/testing/contact-mock';
+import { ShowLoading } from 'src/app/loading/store/loading.action';
 
 @Component({
   selector: 'app-contact-container',
@@ -20,6 +21,7 @@ export class ContactContainerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(new ShowLoading());
     this.store.dispatch(new GetContacts());
   }
 

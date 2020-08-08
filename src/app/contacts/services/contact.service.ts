@@ -16,9 +16,7 @@ export class ContactService {
   }
 
   getContacts(): Observable<Contact[]> {
-    return this.http.get<Contact[]>(this.contactUrl).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<Contact[]>(this.contactUrl);
   }
 
   createContact(contact: Contact): Observable<Contact> {
@@ -26,15 +24,4 @@ export class ContactService {
     return of(contact);
   }
 
-  handleError(err) {
-    let errorMessage: string;
-
-    if (err.error instanceof ErrorEvent) {
-      errorMessage = `An error occured: ${err.error.message}`;
-    } else {
-      errorMessage = `Server error code ${err.status}: ${err.body.error}`;
-    }
-    console.log(err);
-    return throwError(errorMessage);
-  }
 }
