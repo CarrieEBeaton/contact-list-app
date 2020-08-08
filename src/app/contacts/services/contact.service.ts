@@ -17,7 +17,6 @@ export class ContactService {
 
   getContacts(): Observable<Contact[]> {
     return this.http.get<Contact[]>(this.contactUrl).pipe(
-      tap(data => console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
