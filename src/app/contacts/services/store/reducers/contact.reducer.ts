@@ -18,13 +18,10 @@ export function contactReducers(state: ContactState = intialContactState, action
             }
         }
         case ContactActionTypes.CreateContactSuccess: {
-            let updatedContacts: Contact[] = [];
-            updatedContacts = state.contacts.map(contacts => Object.assign({}, contacts));
-            updatedContacts.push(action.payload);
             return {
                 ...state,
                 selectedContact: action.payload,
-                contacts: updatedContacts
+                contacts: [...state.contacts, action.payload]
             }
         }
         case ContactActionTypes.CreateContactFailure: {

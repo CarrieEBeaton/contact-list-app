@@ -23,11 +23,13 @@ export class ContactEditComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.createValiationMessages();
-
   }
 
   ngOnInit() {
     this.setUpForm();
+    this.contactForm.valueChanges.subscribe(() => {
+        this.displayMessage = this.genericValidator.processMessages(this.contactForm);
+    });
   }
 
   setUpForm() {

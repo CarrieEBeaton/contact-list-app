@@ -24,7 +24,7 @@ export class ContactContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription$ = this.contacts$.subscribe((contacts) => {
-      if (contacts.length === 0) {
+      if (!contacts || contacts.length === 0) {
         this.store.dispatch(new ShowLoading());
         this.store.dispatch(new GetContacts());
       }
