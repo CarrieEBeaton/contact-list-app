@@ -1,27 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { AppState } from 'src/app/app-state/app.state';
-import { SearchPipe } from '../../pipes/search.pipe';
-import { ContactState } from '../../services/store/state/contact.state';
-import { ContactMock } from '../../services/testing/contact-mock';
-import { ContactContainerComponent } from './contact-container.component';
+import { ContactMock } from '../../../shared/testing/contact-mock';
 import { ContactListComponent } from '../../components/contact-list/contact-list.component';
-import { RouterTestingModule } from '@angular/router/testing';
-
-const mockContactState: ContactState = {
-  selectedContact: null,
-  contacts: ContactMock.CONTACTS,
-  error: null
-}
-const mockState: AppState = {
-  loading: false,
-  contacts: mockContactState
-}
+import { SearchPipe } from '../../pipes/search.pipe';
+import { ContactContainerComponent } from './contact-container.component';
 
 describe('ContactContainerComponent', () => {
   let component: ContactContainerComponent;

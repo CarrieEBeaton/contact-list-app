@@ -6,7 +6,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from '../../pipes/search.pipe';
-import { ContactMock } from '../../services/testing/contact-mock';
+import { ContactMock } from '../../../shared/testing/contact-mock';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContactListComponent', () => {

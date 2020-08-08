@@ -5,7 +5,7 @@ import { GetContacts } from '../../services/store/actions/contact.actions';
 import { getContacts } from '../../services/store/selectors/contact.selectors';
 import { startWith, map } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
-import { ContactMock } from '../../services/testing/contact-mock';
+import { ContactMock } from '../../../shared/testing/contact-mock';
 
 @Component({
   selector: 'app-contact-container',

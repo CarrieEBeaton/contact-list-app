@@ -11,8 +11,6 @@ export const initialAlertState: AlertState = {
 export function reducer(state: AlertState = initialAlertState, action: AlertAction): AlertState {
     switch (action.type) {
         case AlertActionTypes.AddAlert: {
-            console.log('here');
-            console.log(action.payload);
             return {
                 ...state,
                 alerts: [...state.alerts.concat(action.payload)]

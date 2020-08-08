@@ -4,6 +4,7 @@ import { AppState } from '../app-state/app.state';
 import { RemoveAlert } from './store/alert.actions';
 import { Alert } from './models/alert';
 import { getAlerts } from './store/alert.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alerts',
@@ -12,12 +13,11 @@ import { getAlerts } from './store/alert.selectors';
 })
 export class AlertsComponent implements OnInit {
 
-  alerts = this.store.select(getAlerts);
+  alerts: Observable<Alert[]> = this.store.select(getAlerts);
 
-  constructor(private store: Store<AppState>) { }
+  constructor(public store: Store<AppState>) { }
 
   ngOnInit() {
-    this.alerts.subscribe(alert => console.log(alert));
   }
 
   closeAlert(index: number, alerts: Alert[]) {

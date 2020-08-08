@@ -1,5 +1,5 @@
 import { SearchPipe } from "./search.pipe";
-import { ContactMock } from '../services/testing/contact-mock';
+import { ContactMock } from '../../shared/testing/contact-mock';
 
 describe('SearchPipe', () => {
     let pipe: SearchPipe;

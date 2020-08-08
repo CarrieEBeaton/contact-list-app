@@ -58,8 +58,8 @@ export class ContactEditComponent implements OnInit {
       },
       phone: {
         required: 'Phone Number is required.',
-        invalidNumber: 'Phone Number valid formats: '+
-        '123-456-7890, (123) 456-7890, 123 456 7890, 123.456.7890, +1 (123) 456-7890'
+        invalidNumber: 'Phone Number valid formats: ' +
+          '123-456-7890, (123) 456-7890, 123 456 7890, 123.456.7890, +1 (123) 456-7890'
       },
       address: {
         required: 'Address is required.'
@@ -75,10 +75,8 @@ export class ContactEditComponent implements OnInit {
   saveContact() {
     if (this.contactForm.dirty && this.contactForm.valid) {
       const contact: Contact = Object.assign({}, this.contactForm.value);
-
-      if (!contact._id) {
-        this.create.emit(contact);
-      }
+      this.create.emit(contact);
+      this.contactForm.reset();
     }
   }
 }

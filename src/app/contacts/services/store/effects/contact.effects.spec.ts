@@ -5,7 +5,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable, of } from "rxjs";
 import { ContactService } from '../../contact.service';
-import { ContactMock } from '../../testing/contact-mock';
+import { ContactMock } from '../../../../shared/testing/contact-mock';
 import { ContactActions } from '../actions/contact.actions';
 import * as ContactAction from './../actions/contact.actions';
 import { ContactEffects } from './contact.effects';

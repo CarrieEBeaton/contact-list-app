@@ -1,19 +1,20 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { Contact } from 'src/app/contacts/models/contact';
 import { ContactService } from '../../contact.service';
-import { ContactActionTypes, CreateContact, GetContacts, GetContactsFailure, GetContactsSuccess, CreateContactSuccess } from '../actions/contact.actions';
-import * as createContact from './../actions/contact.actions';
+import { ContactActionTypes, CreateContact, GetContacts, GetContactsFailure, GetContactsSuccess, CreateContactSuccess, ContactListRedirect } from '../actions/contact.actions';
 import { AddAlert } from 'src/app/alerts/store/alert.actions';
 import { Alert } from 'src/app/alerts/models/alert';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ContactEffects {
     constructor(
         private contactService: ContactService,
-        private actions: Actions
+        private actions: Actions,
+        private router: Router
     ) { }
 
 
@@ -32,7 +33,7 @@ export class ContactEffects {
     @Effect()
     createContact$ = this.actions.pipe(
         ofType<CreateContact>(ContactActionTypes.CreateContact),
-        map((action: createContact.CreateContact) => action.payload),
+        map((action: CreateContact) => action.payload),
         mergeMap((contact: Contact) =>
             this.contactService.createContact(contact).pipe(
                 switchMap((newContact: Contact) => {
@@ -42,7 +43,9 @@ export class ContactEffects {
                     };
                     return [
                         new AddAlert(alert),
-                        new CreateContactSuccess(newContact)]
+                        new CreateContactSuccess(newContact),
+                        new ContactListRedirect()
+                    ]
                 }),
                 catchError((error: any) => {
                     console.log(error.statusText);
@@ -50,5 +53,13 @@ export class ContactEffects {
                 })
             )
         ));
+
+    @Effect({ dispatch: false })
+    redirectToContactList$ = this.actions.pipe(
+        ofType(ContactActionTypes.ContactListRedirect),
+        tap(() => {
+            this.router.navigate(['/home']);
+        })
+    )
 
 }

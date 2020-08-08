@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertsComponent } from './alerts/alerts.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -12,12 +15,15 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        NgbModule
+        NgbModule,
+        StoreModule.forRoot([]),
+        EffectsModule.forRoot([])
       ],
       declarations: [
         AppComponent,
         HeaderComponent,
-        HomePageComponent
+        HomePageComponent,
+        AlertsComponent
       ],
     }).compileComponents();
   }));

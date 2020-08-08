@@ -7,7 +7,8 @@ export enum ContactActionTypes {
     GetContactsFailure = '[Contact] Get Contacts Failure',
     CreateContact = '[Contact] Create Contacts',
     CreateContactSuccess = '[Contact] Create Contacts Success',
-    CreateContactFailure = '[Contact] Create Contacts Failure'
+    CreateContactFailure = '[Contact] Create Contacts Failure',
+    ContactListRedirect = '[Contact] Redirect'
 }
 
 export class GetContacts implements Action {
@@ -43,6 +44,9 @@ export class CreateContactFailure implements Action {
     constructor(public payload: string) { }
 }
 
+export class ContactListRedirect implements Action {
+    readonly type = ContactActionTypes.ContactListRedirect
+}
 
 export type ContactActions =
     | GetContacts
@@ -50,4 +54,5 @@ export type ContactActions =
     | GetContactsFailure
     | CreateContact
     | CreateContactSuccess
-    | CreateContactFailure;
+    | CreateContactFailure
+    | ContactListRedirect;

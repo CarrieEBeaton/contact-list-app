@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ContactEditComponent } from '../../components/contact-edit/contact-edit.component';
-import { ContactMock } from '../../services/testing/contact-mock';
+import { ContactMock } from '../../../shared/testing/contact-mock';
 import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ContactEditContainerComponent', () => {
