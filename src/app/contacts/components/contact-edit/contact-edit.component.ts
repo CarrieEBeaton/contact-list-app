@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GenericValidator } from 'src/app/shared/validators/generic.validator';
 import { phoneNumberValidator } from 'src/app/shared/validators/phone-number.validator';
@@ -20,7 +20,6 @@ export class ContactEditComponent implements OnInit {
   pageTitle: string;
   btnText: string;
   errorMessage: string;
-
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
@@ -33,8 +32,8 @@ export class ContactEditComponent implements OnInit {
     this.setUpForm();
     this.displayContact();
     this.contactForm.valueChanges.subscribe(() => {
-      this.errorMessage = this.genericValidator.warningMessages(this.contactForm);
-      this.displayMessage = this.genericValidator.processMessages(this.contactForm);
+        this.displayMessage = this.genericValidator.processMessages(this.contactForm);
+        this.errorMessage = this.genericValidator.warningMessages(this.contactForm);
     });
   }
 
@@ -100,7 +99,7 @@ export class ContactEditComponent implements OnInit {
 
   saveContact() {
     if (this.contactForm.dirty && this.contactForm.valid) {
-      const contact: Contact = { ...this.selectedContact, ...this.contactForm.value }
+      const contact: Contact = {...this.selectedContact, ...this.contactForm.value}
 
       if (!contact._id) {
         contact._id = uuid.v4();

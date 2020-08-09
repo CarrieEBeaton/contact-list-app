@@ -1,7 +1,6 @@
-import { FormGroup, ValidationErrors, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 export class GenericValidator {
-
     constructor(private validationMessages: { [key: string]: { [key: string]: string } }) { }
 
     processMessages(container: FormGroup): { [key: string]: string } {

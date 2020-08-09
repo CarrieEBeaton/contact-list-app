@@ -9,7 +9,7 @@
         <form (ngSubmit)="saveContact()" [formGroup]="contactForm">
             <fieldset>
                 <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="firstName">First Name *</label>
+                    <label class="col-md-3 col-form-label" for="firstName">First Name</label>
                     <div class="col-md-9">
                         <input [ngClass]="{'is-invalid': displayMessage.firstName}" class="form-control" id="firstName"
                             placeholder="First Name (required)" [formControlName]="'firstName'" (blur)="blur()" />
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="lastName">Last Name *</label>
+                    <label class="col-md-3 col-form-label" for="lastName">Last Name</label>
                     <div class="col-md-9">
                         <input [ngClass]="{'is-invalid': displayMessage.lastName}" class="form-control" id="lastName"
                             placeholder="Last Name (required)" [formControlName]="'lastName'" (blur)="blur()" />
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="company">Company *</label>
+                    <label class="col-md-3 col-form-label" for="company">Company</label>
                     <div class="col-md-9">
                         <input [ngClass]="{'is-invalid': displayMessage.company}" class="form-control" id="company"
                             placeholder="Company Name (required)" [formControlName]="'company'" (blur)="blur()" />
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="email">Email *</label>
+                    <label class="col-md-3 col-form-label" for="email">Email</label>
                     <div class="col-md-9">
                         <input [ngClass]="{'is-invalid': displayMessage.email}" class="form-control" id="email"
                             placeholder="Email Name (required)" [formControlName]="'email'" (blur)="blur()" />
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="phone">Phone *</label>
+                    <label class="col-md-3 col-form-label" for="phone">Phone</label>
                     <div class="col-md-9">
                         <input [ngClass]="{'is-invalid': displayMessage.phone}" class="form-control" id="phone"
                             placeholder="Phone (required)" [formControlName]="'phone'" (blur)="blur()" />
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="address">Address *</label>
+                    <label class="col-md-3 col-form-label" for="address">Address</label>
                     <div class="col-md-9">
                         <input [ngClass]="{'is-invalid': displayMessage.address}" class="form-control" id="address"
                             placeholder="Address (required)" [formControlName]="'address'" (blur)="blur()" />
