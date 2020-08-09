@@ -29,7 +29,7 @@ describe('ContactEditComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have valid forms with valid data', () => {
+  it('should have not disable save button with valid data', () => {
     //Arrange
     let createBtn = debugElement.nativeElement.querySelector('#createBtn');
     setForm();
