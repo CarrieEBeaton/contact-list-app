@@ -98,7 +98,7 @@ export class ContactEditComponent implements OnInit {
   }
 
   saveContact() {
-    if (this.contactForm.dirty && this.contactForm.valid) {
+    if (this.contactForm.valid) {
       const contact: Contact = {...this.selectedContact, ...this.contactForm.value}
 
       if (!contact._id) {
