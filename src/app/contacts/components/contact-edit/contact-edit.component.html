@@ -5,8 +5,8 @@
     <div class="card-body">
         <div *ngIf="errorMessage" class="alert alert-warning">
             The following items require your attention before you can continue: <br> {{ errorMessage }}
-            <br><strong>Tip:</strong>&nbsp;&nbsp;<span>The required field indicator is an asterisk *</span>
         </div>
+        <br><strong>Tip:</strong>&nbsp;&nbsp;<span>*&nbsp;Indicates required field</span><br> <br>
         <form (ngSubmit)="saveContact()" [formGroup]="contactForm">
             <fieldset>
                 <div class="form-group row">
