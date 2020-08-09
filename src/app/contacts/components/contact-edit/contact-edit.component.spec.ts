@@ -38,13 +38,6 @@ describe('ContactEditComponent', () => {
     createBtn.click();
 
     //Assert
-    expect(component.contactForm.controls['firstName'].valid).toBeTruthy();
-    expect(component.contactForm.controls['lastName'].valid).toBeTruthy();
-    expect(component.contactForm.controls['company'].valid).toBeTruthy();
-    expect(component.contactForm.controls['email'].valid).toBeTruthy();
-    expect(component.contactForm.controls['phone'].valid).toBeTruthy();
-    expect(component.contactForm.controls['address'].valid).toBeTruthy();
-    expect(component.contactForm.valid).toBeTruthy();
     expect(createBtn.disabled).toBeFalsy();
   });
 
