@@ -51,7 +51,7 @@ export function contactReducers(state: ContactState = intialContactState, action
         case ContactActionTypes.DeleteContactSuccess: {
             return {
                 ...state,
-                contacts: state.contacts.filter(contact => contact !== action.payload)
+                contacts: state.contacts.filter(contact => contact._id !== action.payload._id)
             }
         }
         case ContactActionTypes.DeleteContactFailure: {

@@ -25,7 +25,7 @@ export class ContactEditComponent implements OnInit {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
-  constructor(private formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder) {
     this.createValiationMessages();
   }
 
