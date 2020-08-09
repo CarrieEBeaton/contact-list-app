@@ -10,7 +10,7 @@
                         </div>
                     </form>
                     <div class="d-flex justify-content-end mb-2">
-                        <button [routerLink]="['create']" type="button" class="btn btn-outline-primary">Create New</button>
+                        <button [routerLink]="['create', 0]" type="button" class="btn btn-outline-primary">Create New</button>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -54,7 +54,7 @@
                                     </td>
                                     <td class="d-flex flex-nowrap flex-row">
                                         <app-modal [title]="'Delete'" [message]="'Are you sure you want to delete?'" [icon]="'fa fa-trash'" [command]="'Delete'" (submit)="delete(contact)"></app-modal>
-                                        <a class="btn btn-primary circle m-2" role="button" aria-disabled="true" [routerLink]="['create']" (click)="setSelectedContact(contact)"><i class="fa fa-pencil" aria-hidden="true"></i></a>                                    
+                                        <a class="btn btn-primary circle m-2" role="button" aria-disabled="true" [routerLink]="['create', contact._id]"><i class="fa fa-pencil" aria-hidden="true"></i></a>                                    
                                     </td>
                                 </tr>
                             </tbody>

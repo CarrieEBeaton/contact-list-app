@@ -9,7 +9,7 @@ const routes: Routes = [
         component: ContactContainerComponent
     },
     {
-        path: 'create',
+        path: 'create/:id',
         component: ContactEditContainerComponent
     }
 ];

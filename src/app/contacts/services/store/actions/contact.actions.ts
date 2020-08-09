@@ -5,7 +5,7 @@ export enum ContactActionTypes {
     GetContacts = '[Contact] Get Contacts',
     GetContactsSuccess = '[Contact] Get Contacts Success',
     GetContactsFailure = '[Contact] Get Contacts Failure',
-    SetSelectedContact = '[Contact] Selected Contact',
+    GetSelectedContact = '[Contact] Selected Contact',
     CreateContact = '[Contact] Create Contact',
     CreateContactSuccess = '[Contact] Create Contact Success',
     CreateContactFailure = '[Contact] Create Contact Failure',
@@ -34,9 +34,9 @@ export class GetContactsFailure implements Action {
     constructor(public payload: string) { }
 }
 
-export class SetSelectedContact implements Action {
-    readonly type = ContactActionTypes.SetSelectedContact;
-    constructor(public payload: Contact) { 
+export class GetSelectedContact implements Action {
+    readonly type = ContactActionTypes.GetSelectedContact;
+    constructor(public payload: string) { 
     }
 }
 
@@ -99,7 +99,7 @@ export type ContactActions =
     | GetContacts
     | GetContactsSuccess
     | GetContactsFailure
-    | SetSelectedContact
+    | GetSelectedContact
     | CreateContact
     | CreateContactSuccess
     | CreateContactFailure

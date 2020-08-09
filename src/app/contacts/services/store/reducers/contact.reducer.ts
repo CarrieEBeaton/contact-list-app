@@ -15,10 +15,10 @@ export function contactReducers(state: ContactState = intialContactState, action
                 error: action.payload
             }
         }
-        case ContactActionTypes.SetSelectedContact: {
+        case ContactActionTypes.GetSelectedContact: {
             return {
                 ...state,
-                selectedContact: action.payload
+                selectedContact: state.contacts.find(contact => contact._id === action.payload)
             }
         }
         case ContactActionTypes.CreateContactSuccess: {
