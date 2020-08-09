@@ -6,9 +6,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { ALERTERROR } from '../../shared/testing/alert-mock';
 import { initialState } from './../../shared/testing/initalState-mock';
 import { AlertOtherComponent } from './alert-other.component';
+import { getAlertMock } from 'src/app/shared/testing/alert-mock';
 
 describe('AlertOtherComponent', () => {
 
@@ -45,8 +45,8 @@ describe('AlertOtherComponent', () => {
         expect(app).toBeTruthy();
     });
 
-    it('should show success alert', () => {
-        component.alerts = of([ALERTERROR]);
+    it('should show danger alert', () => {
+        component.alerts = of([getAlertMock('Server error code 404 Bad Request: Invalid Input Param', 'danger')]);
         fixture.detectChanges();
         const ngbAlert = debugElement.query(By.css('#alert'));
         expect(ngbAlert).toBeDefined();

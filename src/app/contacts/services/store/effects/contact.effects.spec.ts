@@ -1,19 +1,18 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { cold, hot } from 'jasmine-marbles';
-import { Observable, of, observable, throwError } from "rxjs";
-import { ContactService } from '../../contact.service';
+import { Observable, of, throwError } from "rxjs";
+import { ALERT, getAlertMock } from 'src/app/shared/testing/alert-mock';
 import { ContactMock } from '../../../../shared/testing/contact-mock';
+import { ContactService } from '../../contact.service';
 import { ContactActions } from '../actions/contact.actions';
+import * as AlertAction from './../../../../alerts/store/alert.actions';
+import * as LoadingAction from './../../../../loading/store/loading.action';
 import * as ContactAction from './../actions/contact.actions';
 import { ContactEffects } from './contact.effects';
-import { RouterTestingModule } from '@angular/router/testing';
-import * as  AlertAction from './../../../../alerts/store/alert.actions';
-import { ALERT, ALERTERROR } from 'src/app/shared/testing/alert-mock';
-import * as LoadingAction from './../../../../loading/store/loading.action';
-import { HttpErrorResponse } from '@angular/common/http';
 
 describe('ContactEffects', () => {
     let actions: Observable<ContactActions>;
@@ -62,7 +61,7 @@ describe('ContactEffects', () => {
 
         //Act
         const action = new ContactAction.GetContacts();
-        const alertResult = new AlertAction.AddAlert(ALERTERROR);
+        const alertResult = new AlertAction.AddAlert(getAlertMock('Server error code 404 Bad Request: Invalid Input Param', 'danger'));
         const contactResult = new ContactAction.GetContactsFailure(mockErrorResponse);
         const hideLoadingResult = new LoadingAction.HideLoading();
 
@@ -72,7 +71,6 @@ describe('ContactEffects', () => {
         //Assert
         expect(effects.getContacts$).toBeObservable(expected);
     });
-
 
     it('should add alert, create contact success and redirection on create contact action call', () => {
         //Arrange
@@ -105,7 +103,7 @@ describe('ContactEffects', () => {
 
         //Act
         const action = new ContactAction.CreateContact(ContactMock.CONTACTS[0]);
-        const alertResult = new AlertAction.AddAlert(ALERTERROR);
+        const alertResult = new AlertAction.AddAlert(getAlertMock('Server error code 404 Bad Request: Invalid Input Param', 'danger'));
         const contactResult = new ContactAction.CreateContactFailure(mockErrorResponse);
         const hideLoadingResult = new LoadingAction.HideLoading();
 
@@ -114,6 +112,89 @@ describe('ContactEffects', () => {
         const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult});
         //Assert
         expect(effects.createContact$).toBeObservable(expected);
+    });
+
+    it('should add alert, hide loading, update contact success and redirection on update contact action call', () => {
+        //Arrange
+        spyOn(service, 'updateContact').and.returnValue(
+            of(ContactMock.CONTACTS[0])
+        );
+
+        //Act
+        const action = new ContactAction.UpdateContact(ContactMock.CONTACTS[0]);
+        const alertResult = new AlertAction.AddAlert(getAlertMock('Successfully updated contact!'));
+        const contactResult = new ContactAction.UpdateContactSuccess(ContactMock.CONTACTS[0]);
+        const redirectResult = new ContactAction.ContactListRedirect();
+        const hideLoadingResult = new LoadingAction.HideLoading();
+
+
+        actions = hot('-a----', { a: action});
+        const expected = cold('-(bcde)', { b: hideLoadingResult, c: alertResult, d: contactResult, e: redirectResult });
+        //Assert
+        expect(effects.updateContact$).toBeObservable(expected);
+    });
+
+    it('should add alert, update contact faliure and hide loading on update contact error', () => {
+
+        const mockErrorResponse = `Server error code 404 Bad Request: Invalid Input Param`;
+        const error= throwError(mockErrorResponse);
+        //Arrange
+        spyOn(service, 'updateContact').and.returnValue(
+            error
+        );
+
+        //Act
+        const action = new ContactAction.UpdateContact(ContactMock.CONTACTS[0]);
+        const alertResult = new AlertAction.AddAlert(getAlertMock('Server error code 404 Bad Request: Invalid Input Param', 'danger'));
+        const contactResult = new ContactAction.UpdateContactFailure(mockErrorResponse);
+        const hideLoadingResult = new LoadingAction.HideLoading();
+
+
+        actions = hot('-a----', { a: action});
+        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult});
+        //Assert
+        expect(effects.updateContact$).toBeObservable(expected);
+    });
+
+    it('should add alert, hide loading, delete contact success on delete contact action call', () => {
+        //Arrange
+        spyOn(service, 'deleteContact').and.returnValue(
+            of(ContactMock.CONTACTS[0])
+        );
+
+        //Act
+        const action = new ContactAction.DeleteContact(ContactMock.CONTACTS[0]);
+        const alertResult = new AlertAction.AddAlert(getAlertMock('Successfully deleted contact!'));
+        const contactResult = new ContactAction.DeleteContactSuccess(ContactMock.CONTACTS[0]);
+        const hideLoadingResult = new LoadingAction.HideLoading();
+
+
+        actions = hot('-a----', { a: action});
+        const expected = cold('-(bcd)', { b: hideLoadingResult, c: alertResult, d: contactResult });
+        //Assert
+        expect(effects.deleteContact$).toBeObservable(expected);
+    });
+
+    it('should add alert, delete contact faliure and hide loading on update contact error', () => {
+
+        const mockErrorResponse = `Server error code 404 Bad Request: Invalid Input Param`;
+        const error= throwError(mockErrorResponse);
+        //Arrange
+        spyOn(service, 'deleteContact').and.returnValue(
+            error
+        );
+
+        //Act
+        const action = new ContactAction.DeleteContact(ContactMock.CONTACTS[0]);
+        const alertResult = new AlertAction.AddAlert(getAlertMock('Server error code 404 Bad Request: Invalid Input Param', 'danger'));
+        const contactResult = new ContactAction.DeleteContactFailure(mockErrorResponse);
+        const hideLoadingResult = new LoadingAction.HideLoading();
+
+
+        actions = hot('-a----', { a: action});
+        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult});
+        //Assert
+        expect(effects.deleteContact$).toBeObservable(expected);
     });
 
 });
