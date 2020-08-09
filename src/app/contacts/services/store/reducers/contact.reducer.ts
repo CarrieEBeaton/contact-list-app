@@ -38,7 +38,8 @@ export function contactReducers(state: ContactState = intialContactState, action
             const updatedContacts = state.contacts.map(contact => action.payload._id === contact._id ? action.payload : contact);
             return {
                 ...state,
-                contacts: updatedContacts
+                contacts: updatedContacts,
+                selectedContact: null
             }
         }
         case ContactActionTypes.UpdateContactFailure: {
