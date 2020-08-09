@@ -4,7 +4,7 @@
     </div>
     <div class="card-body">
         <div *ngIf="errorMessage" class="alert alert-warning">
-            The following items require your attention before you can continue: <br> {{ errorMessage }}
+            The following fields require your attention before you can continue: <br> {{ errorMessage }}
         </div>
         <br><strong>Tip:</strong>&nbsp;&nbsp;<span>*&nbsp;Indicates required field</span><br> <br>
         <form (ngSubmit)="saveContact()" [formGroup]="contactForm">
