@@ -26,7 +26,7 @@ export class GenericValidator {
         return messages;
     }
 
-    warningMessages(container: FormGroup) {
+    getWarningMessages(container: FormGroup) {
         let errors: string = '';
         for (const controlKey in container.controls) {
             const c = container.controls[controlKey];

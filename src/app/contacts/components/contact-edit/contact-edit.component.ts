@@ -33,7 +33,7 @@ export class ContactEditComponent implements OnInit {
     this.displayContact();
     this.contactForm.valueChanges.subscribe(() => {
         this.displayMessage = this.genericValidator.processMessages(this.contactForm);
-        this.errorMessage = this.genericValidator.warningMessages(this.contactForm);
+        this.errorMessage = this.genericValidator.getWarningMessages(this.contactForm);
     });
   }
 
