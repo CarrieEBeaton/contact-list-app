@@ -83,7 +83,7 @@ export class ContactEditComponent implements OnInit {
       },
       phone: {
         required: 'Phone Number is required.',
-        invalidNumber: 'Phone Number valid formats: ' +
+        invalid: 'Phone Number valid formats: ' +
           '123-456-7890, (123) 456-7890, 123 456 7890, 123.456.7890, +1 (123) 456-7890'
       },
       address: {
