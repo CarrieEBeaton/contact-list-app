@@ -1,6 +1,7 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidationErrors, FormControl } from '@angular/forms';
 
 export class GenericValidator {
+
     constructor(private validationMessages: { [key: string]: { [key: string]: string } }) { }
 
     processMessages(container: FormGroup): { [key: string]: string } {
@@ -24,5 +25,19 @@ export class GenericValidator {
             }
         }
         return messages;
+    }
+
+    warningMessages(container: FormGroup) {
+        let errors: string = '';
+        for (const controlKey in container.controls) {
+            const c = container.controls[controlKey];
+            if (c.errors !== null) {
+             
+                Object.keys(c.errors).map(messageKey => {
+                    errors += controlKey.toUpperCase() + ': ' + messageKey + ' ';
+                });
+            }
+        }
+        return errors !== undefined ? errors : '';
     }
 }

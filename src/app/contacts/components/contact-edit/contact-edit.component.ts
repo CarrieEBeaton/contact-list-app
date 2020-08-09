@@ -1,10 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GenericValidator } from 'src/app/shared/validators/generic.validator';
 import { phoneNumberValidator } from 'src/app/shared/validators/phone-number.validator';
-import { Contact } from '../../models/contact';
 import * as uuid from "uuid";
-import { ActivatedRoute } from '@angular/router';
+import { Contact } from '../../models/contact';
 
 @Component({
   selector: 'app-contact-edit',
@@ -20,6 +19,7 @@ export class ContactEditComponent implements OnInit {
   contactForm: FormGroup;
   pageTitle: string;
   btnText: string;
+  errorMessage: string;
 
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
@@ -33,7 +33,8 @@ export class ContactEditComponent implements OnInit {
     this.setUpForm();
     this.displayContact();
     this.contactForm.valueChanges.subscribe(() => {
-        this.displayMessage = this.genericValidator.processMessages(this.contactForm);
+      this.errorMessage = this.genericValidator.warningMessages(this.contactForm);
+      this.displayMessage = this.genericValidator.processMessages(this.contactForm);
     });
   }
 
@@ -99,7 +100,7 @@ export class ContactEditComponent implements OnInit {
 
   saveContact() {
     if (this.contactForm.dirty && this.contactForm.valid) {
-      const contact: Contact = {...this.selectedContact, ...this.contactForm.value}
+      const contact: Contact = { ...this.selectedContact, ...this.contactForm.value }
 
       if (!contact._id) {
         contact._id = uuid.v4();
