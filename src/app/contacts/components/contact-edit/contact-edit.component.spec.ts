@@ -2,6 +2,7 @@ import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContactEditComponent } from './contact-edit.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContactEditComponent', () => {
   let component: ContactEditComponent;
@@ -10,7 +11,7 @@ describe('ContactEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, RouterTestingModule],
       declarations: [ContactEditComponent]
     })
       .compileComponents();

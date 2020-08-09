@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from '../../pipes/search.pipe';
 import { ContactMock } from '../../../shared/testing/contact-mock';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('ContactListComponent', () => {
   let component: ContactListComponent;
@@ -20,7 +21,8 @@ describe('ContactListComponent', () => {
         NgbModule, 
         ReactiveFormsModule, 
         FormsModule, 
-        RouterTestingModule
+        RouterTestingModule,
+        SharedModule
       ],
       declarations: [ ContactListComponent, SearchPipe ]
     })

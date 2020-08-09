@@ -10,6 +10,7 @@ import { ContactMock } from '../../../shared/testing/contact-mock';
 import { ContactListComponent } from '../../components/contact-list/contact-list.component';
 import { SearchPipe } from '../../pipes/search.pipe';
 import { ContactContainerComponent } from './contact-container.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('ContactContainerComponent', () => {
   let component: ContactContainerComponent;
@@ -24,7 +25,8 @@ describe('ContactContainerComponent', () => {
         ReactiveFormsModule, 
         StoreModule.forRoot([]), 
         EffectsModule.forRoot([]),
-        RouterTestingModule
+        RouterTestingModule,
+        SharedModule
       ],
       declarations: [ContactContainerComponent, ContactListComponent, SearchPipe],
       providers: [
