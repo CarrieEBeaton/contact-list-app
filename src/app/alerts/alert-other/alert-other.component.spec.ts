@@ -50,7 +50,7 @@ describe('AlertOtherComponent', () => {
         fixture.detectChanges();
         const ngbAlert = debugElement.query(By.css('#alert'));
         expect(ngbAlert).toBeDefined();
-        expect(ngbAlert.attributes['ng-reflect-type']).toBe('danger');
+        expect(ngbAlert.nativeElement.textContent.trim()).toContain('Server error code 404 Bad Request: Invalid Input Param');
     }); 
 
 });

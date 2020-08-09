@@ -13,15 +13,22 @@ import * as AlertAction from './../../../../alerts/store/alert.actions';
 import * as LoadingAction from './../../../../loading/store/loading.action';
 import * as ContactAction from './../actions/contact.actions';
 import { ContactEffects } from './contact.effects';
+import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 describe('ContactEffects', () => {
     let actions: Observable<ContactActions>;
     let effects: ContactEffects;
     let service: ContactService;
+
+    let router = {
+        navigate: jasmine.createSpy('navigate')
+    };
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, RouterTestingModule],
             providers: [ContactEffects,
+                { provide: Router, useValue: router },
                 provideMockActions(() => actions)]
         })
         effects = TestBed.get(ContactEffects);
@@ -44,8 +51,8 @@ describe('ContactEffects', () => {
         const result = new ContactAction.GetContactsSuccess(ContactMock.CONTACTS);
         const hideLoadingResult = new LoadingAction.HideLoading();
 
-        actions = hot('-a--', { a: action});
-        const expected = cold('-(bc)', { b: result, c: hideLoadingResult});
+        actions = hot('-a--', { a: action });
+        const expected = cold('-(bc)', { b: result, c: hideLoadingResult });
         //Assert
         expect(effects.getContacts$).toBeObservable(expected);
     });
@@ -53,7 +60,7 @@ describe('ContactEffects', () => {
     it('should add alert, get contact faliure and hide loading on get contact error', () => {
 
         const mockErrorResponse = `Server error code 404 Bad Request: Invalid Input Param`;
-        const error= throwError(mockErrorResponse);
+        const error = throwError(mockErrorResponse);
         //Arrange
         spyOn(service, 'getContacts').and.returnValue(
             error
@@ -66,8 +73,8 @@ describe('ContactEffects', () => {
         const hideLoadingResult = new LoadingAction.HideLoading();
 
 
-        actions = hot('-a----', { a: action});
-        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult});
+        actions = hot('-a----', { a: action });
+        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult });
         //Assert
         expect(effects.getContacts$).toBeObservable(expected);
     });
@@ -86,7 +93,7 @@ describe('ContactEffects', () => {
         const hideLoadingResult = new LoadingAction.HideLoading();
 
 
-        actions = hot('-a----', { a: action});
+        actions = hot('-a----', { a: action });
         const expected = cold('-(bcde)', { b: hideLoadingResult, c: alertResult, d: contactResult, e: redirectResult });
         //Assert
         expect(effects.createContact$).toBeObservable(expected);
@@ -95,7 +102,7 @@ describe('ContactEffects', () => {
     it('should add alert, create contact faliure and hide loading on create contact error', () => {
 
         const mockErrorResponse = `Server error code 404 Bad Request: Invalid Input Param`;
-        const error= throwError(mockErrorResponse);
+        const error = throwError(mockErrorResponse);
         //Arrange
         spyOn(service, 'createContact').and.returnValue(
             error
@@ -108,8 +115,8 @@ describe('ContactEffects', () => {
         const hideLoadingResult = new LoadingAction.HideLoading();
 
 
-        actions = hot('-a----', { a: action});
-        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult});
+        actions = hot('-a----', { a: action });
+        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult });
         //Assert
         expect(effects.createContact$).toBeObservable(expected);
     });
@@ -128,7 +135,7 @@ describe('ContactEffects', () => {
         const hideLoadingResult = new LoadingAction.HideLoading();
 
 
-        actions = hot('-a----', { a: action});
+        actions = hot('-a----', { a: action });
         const expected = cold('-(bcde)', { b: hideLoadingResult, c: alertResult, d: contactResult, e: redirectResult });
         //Assert
         expect(effects.updateContact$).toBeObservable(expected);
@@ -137,7 +144,7 @@ describe('ContactEffects', () => {
     it('should add alert, update contact faliure and hide loading on update contact error', () => {
 
         const mockErrorResponse = `Server error code 404 Bad Request: Invalid Input Param`;
-        const error= throwError(mockErrorResponse);
+        const error = throwError(mockErrorResponse);
         //Arrange
         spyOn(service, 'updateContact').and.returnValue(
             error
@@ -150,8 +157,8 @@ describe('ContactEffects', () => {
         const hideLoadingResult = new LoadingAction.HideLoading();
 
 
-        actions = hot('-a----', { a: action});
-        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult});
+        actions = hot('-a----', { a: action });
+        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult });
         //Assert
         expect(effects.updateContact$).toBeObservable(expected);
     });
@@ -169,7 +176,7 @@ describe('ContactEffects', () => {
         const hideLoadingResult = new LoadingAction.HideLoading();
 
 
-        actions = hot('-a----', { a: action});
+        actions = hot('-a----', { a: action });
         const expected = cold('-(bcd)', { b: hideLoadingResult, c: alertResult, d: contactResult });
         //Assert
         expect(effects.deleteContact$).toBeObservable(expected);
@@ -178,7 +185,7 @@ describe('ContactEffects', () => {
     it('should add alert, delete contact faliure and hide loading on update contact error', () => {
 
         const mockErrorResponse = `Server error code 404 Bad Request: Invalid Input Param`;
-        const error= throwError(mockErrorResponse);
+        const error = throwError(mockErrorResponse);
         //Arrange
         spyOn(service, 'deleteContact').and.returnValue(
             error
@@ -191,10 +198,22 @@ describe('ContactEffects', () => {
         const hideLoadingResult = new LoadingAction.HideLoading();
 
 
-        actions = hot('-a----', { a: action});
-        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult});
+        actions = hot('-a----', { a: action });
+        const expected = cold('-(bcd)', { b: alertResult, c: contactResult, d: hideLoadingResult });
         //Assert
         expect(effects.deleteContact$).toBeObservable(expected);
     });
 
+    it('should navigate to the Contact List page', () => {
+        //Arrange
+        const action = new ContactAction.ContactListRedirect();
+        //Act
+        actions = cold('-a----', { a: action });
+        //Assert
+        effects.deleteContact$.pipe(
+            take(1)
+        ).subscribe(() => {
+            expect(router.navigate).toHaveBeenCalled();
+        });
+    });
 });
