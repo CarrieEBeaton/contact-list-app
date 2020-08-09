@@ -63,7 +63,7 @@
                     <div class="col-md-10 col-md-offset-2">
                         <button id="cancelBtn" routerLink="/contacts" class="btn btn-outline-primary mr-2" type="submit">Cancel</button>
                         <button id="createBtn" class="btn btn-outline-primary" type="submit"
-                            [disabled]="!contactForm.valid">{{btnText}}</button>
+                            [disabled]="!contactForm.valid || !contactForm.dirty">{{btnText}}</button>
                     </div>
                 </div>
             </fieldset>

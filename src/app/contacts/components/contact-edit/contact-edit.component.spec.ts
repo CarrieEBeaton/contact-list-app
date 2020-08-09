@@ -33,6 +33,7 @@ describe('ContactEditComponent', () => {
     //Arrange
     let createBtn = debugElement.nativeElement.querySelector('#createBtn');
     setForm();
+    component.contactForm.markAsDirty();
     fixture.detectChanges();
 
     createBtn.click();
@@ -124,6 +125,7 @@ describe('ContactEditComponent', () => {
   it('should call create when contact does not have an id', () => {
     const create = spyOn(component.create, 'emit');
     setForm();
+    component.contactForm.markAsDirty();
     //Arrange
     component.saveContact();
     fixture.detectChanges();
@@ -136,6 +138,7 @@ describe('ContactEditComponent', () => {
     setForm();
     component.selectedContact = ContactMock.CONTACTS[0];
     component.selectedContact._id = '012345678';
+    component.contactForm.markAsDirty();
     //Arrange
     component.saveContact();
     fixture.detectChanges();
@@ -148,6 +151,7 @@ describe('ContactEditComponent', () => {
     const createContact = spyOn(component, 'saveContact');
     let createBtn = debugElement.nativeElement.querySelector('#createBtn');
     setForm();
+    component.contactForm.markAsDirty();
     fixture.detectChanges();
     createBtn.click();
 
