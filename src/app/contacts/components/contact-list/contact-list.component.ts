@@ -11,6 +11,7 @@ export class ContactListComponent implements OnInit {
 
   @Input() contacts: Contact[];
   @Output() deleteContact = new EventEmitter<Contact>();
+  @Output() selectedContact = new EventEmitter<Contact>();
 
   filter = new FormControl('');
 
@@ -20,4 +21,9 @@ export class ContactListComponent implements OnInit {
   delete(contact: Contact) {
     this.deleteContact.emit(contact);
   }
+
+  setSelectedContact(contact: Contact) {
+    this.selectedContact.emit(contact);
+  }
+
 }

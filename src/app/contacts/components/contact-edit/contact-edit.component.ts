@@ -1,10 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app-state/app.state';
 import { GenericValidator } from 'src/app/shared/validators/generic.validator';
 import { phoneNumberValidator } from 'src/app/shared/validators/phone-number.validator';
 import { Contact } from '../../models/contact';
+import * as uuid from "uuid";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact-edit',
@@ -14,19 +14,24 @@ import { Contact } from '../../models/contact';
 export class ContactEditComponent implements OnInit {
 
 
+  @Input() selectedContact: Contact;
   @Output() create = new EventEmitter<Contact>();
+  @Output() update = new EventEmitter<Contact>();
   contactForm: FormGroup;
+  pageTitle: string;
+  btnText: string;
 
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) {
     this.createValiationMessages();
   }
 
   ngOnInit() {
     this.setUpForm();
+    this.displayContact();
     this.contactForm.valueChanges.subscribe(() => {
         this.displayMessage = this.genericValidator.processMessages(this.contactForm);
     });
@@ -41,6 +46,24 @@ export class ContactEditComponent implements OnInit {
       phone: ['', [Validators.required, phoneNumberValidator]],
       address: ['', Validators.required],
     })
+  }
+
+  displayContact() {
+    if (this.selectedContact) {
+      this.pageTitle = 'Edit Contact';
+      this.btnText = 'Update';
+      this.contactForm.patchValue({
+        firstName: this.selectedContact.firstName,
+        lastName: this.selectedContact.lastName,
+        company: this.selectedContact.company,
+        email: this.selectedContact.email,
+        phone: this.selectedContact.phone,
+        address: this.selectedContact.address,
+      });
+    } else {
+      this.pageTitle = 'Create Contact';
+      this.btnText = 'Create';
+    }
   }
 
   createValiationMessages() {
@@ -76,8 +99,15 @@ export class ContactEditComponent implements OnInit {
 
   saveContact() {
     if (this.contactForm.dirty && this.contactForm.valid) {
-      const contact: Contact = Object.assign({}, this.contactForm.value);
-      this.create.emit(contact);
+      const contact: Contact = {...this.selectedContact, ...this.contactForm.value}
+
+      if (!contact._id) {
+        contact._id = uuid.v4();
+        this.create.emit(contact);
+      } else {
+        this.update.emit(contact);
+      }
+
       this.contactForm.reset();
     }
   }

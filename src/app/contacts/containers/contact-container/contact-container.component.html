@@ -1,1 +1,3 @@
-<app-contact-list [contacts]="contacts$ | async" (deleteContact)="deleteContact($event)"></app-contact-list>
+<app-contact-list [contacts]="contacts$ | async" 
+(selectedContact)="setSelectContact($event)" 
+(deleteContact)="deleteContact($event)"></app-contact-list>

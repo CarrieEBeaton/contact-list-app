@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        Create Contact
+        {{pageTitle}}
     </div>
     <div class="card-body">
         <form (ngSubmit)="saveContact()" [formGroup]="contactForm">
@@ -58,7 +58,7 @@
                 <div class="form-group row">
                     <div class="col-md-10 col-md-offset-2">
                         <button id="createBtn" class="btn btn-outline-primary" type="submit"
-                            [disabled]="!contactForm.valid">Create</button>
+                            [disabled]="!contactForm.valid">{{btnText}}</button>
                     </div>
                 </div>
             </fieldset>

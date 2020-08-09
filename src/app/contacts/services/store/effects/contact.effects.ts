@@ -1,15 +1,20 @@
 import { Injectable } from "@angular/core";
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { Contact } from 'src/app/contacts/models/contact';
-import { ContactService } from '../../contact.service';
-import { ContactActionTypes, CreateContact, GetContacts, GetContactsFailure, GetContactsSuccess, CreateContactSuccess, ContactListRedirect, CreateContactFailure, DeleteContact, DeleteContactSuccess, DeleteContactFailure } from '../actions/contact.actions';
-import { AddAlert } from 'src/app/alerts/store/alert.actions';
-import { Alert } from 'src/app/alerts/models/alert';
 import { Router } from '@angular/router';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { Alert } from 'src/app/alerts/models/alert';
+import { AddAlert } from 'src/app/alerts/store/alert.actions';
+import { Contact } from 'src/app/contacts/models/contact';
 import { HideLoading } from 'src/app/loading/store/loading.action';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ContactService } from '../../contact.service';
+import {
+    ContactActionTypes,
+    ContactListRedirect, CreateContact,
+    CreateContactFailure, CreateContactSuccess, DeleteContact,
+    DeleteContactFailure, DeleteContactSuccess, GetContacts, GetContactsFailure, GetContactsSuccess,
+
+    UpdateContact, UpdateContactSuccess, UpdateContactFailure
+} from '../actions/contact.actions';
 
 @Injectable()
 export class ContactEffects {
@@ -115,4 +120,37 @@ export class ContactEffects {
                 })
             )
         ));
+
+        @Effect()
+        updateContact$ = this.actions.pipe(
+            ofType<UpdateContact>(ContactActionTypes.UpdateContact),
+            map((action: UpdateContact) => action.payload),
+            mergeMap((contact: Contact) =>
+                this.contactService.updateContact(contact).pipe(
+                    switchMap((newContact: Contact) => {
+                        const alert: Alert = {
+                            type: 'success',
+                            message: 'Successfully updated contact!'
+                        };
+                        return [
+                            new HideLoading(),
+                            new AddAlert(alert),
+                            new UpdateContactSuccess(newContact),
+                            new ContactListRedirect(),
+                        ]
+                    }),
+                    catchError((error: string) => {
+    
+                        const alert: Alert = {
+                            type: 'danger',
+                            message: error 
+                        };
+                        return [
+                            new AddAlert(alert),
+                            new UpdateContactFailure(error),
+                            new HideLoading()
+                        ]
+                    })
+                )
+            ));
 }

@@ -1,1 +1,3 @@
-<app-contact-edit (create)="newContact($event)"><app-contact-edit>
+<app-contact-edit [selectedContact]="selectedContact$ | async" (update)="updateContact($event)"
+    (create)="newContact($event)">
+    <app-contact-edit>
