@@ -15,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 describe('ContactContainerComponent', () => {
   let component: ContactContainerComponent;
   let fixture: ComponentFixture<ContactContainerComponent>;
+  let storeDispatch;
   const initialState = [ContactMock.CONTACTS];
 
   beforeEach(async(() => {
@@ -40,6 +41,7 @@ describe('ContactContainerComponent', () => {
     fixture = TestBed.createComponent(ContactContainerComponent);
     component = fixture.componentInstance;
     component.contacts$ = of(ContactMock.CONTACTS);
+    storeDispatch = spyOn(component.store, 'dispatch').and.callThrough();
     fixture.detectChanges();
   });
 
@@ -48,15 +50,18 @@ describe('ContactContainerComponent', () => {
   });
 
   it('should not call store dispatch on ngOnInit if contacts are in the list', () => {
-    const storeDispatch = spyOn(component.store, 'dispatch').and.callThrough();
     component.ngOnInit();
     expect(storeDispatch).not.toHaveBeenCalled();
   });
 
   it('should call store dispatch on ngOnInit if no contacts are in the list', () => {
     component.contacts$ = of([]);
-    const storeDispatch = spyOn(component.store, 'dispatch').and.callThrough();
     component.ngOnInit();
+    expect(storeDispatch).toHaveBeenCalled();
+  });
+
+  it('should call store dispatch on delete contact ', () => {
+    component.deleteContact(ContactMock.CONTACTS[0]);
     expect(storeDispatch).toHaveBeenCalled();
   });
 });

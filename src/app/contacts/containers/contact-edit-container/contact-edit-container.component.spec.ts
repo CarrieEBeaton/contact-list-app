@@ -57,4 +57,14 @@ describe('ContactEditContainerComponent', () => {
     component.newContact(ContactMock.CONTACTS[0]);
     expect(storeDispatch).toHaveBeenCalled();
   });
+
+  it('should call store dispatch on update contact ', () => {
+    component.updateContact(ContactMock.CONTACTS[0]);
+    expect(storeDispatch).toHaveBeenCalled();
+  });
+
+  it('should call store dispatch on get contact ', () => {
+    component.getContact(ContactMock.CONTACTS[0]._id);
+    expect(storeDispatch).toHaveBeenCalled();
+  });
 });
