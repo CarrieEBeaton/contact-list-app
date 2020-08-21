@@ -5,13 +5,11 @@ import { LoadingState, initialLoadingState } from '../loading/store/loading.redu
 export interface AppState {
     loading: LoadingState;
     alerts: AlertState;
-    contacts: ContactState
 }
 
 export const initialAppState: AppState = {
     loading: initialLoadingState,
-    alerts: initialAlertState,
-    contacts: intialContactState
+    alerts: initialAlertState
 }
 
 export function getInitialState(): AppState {

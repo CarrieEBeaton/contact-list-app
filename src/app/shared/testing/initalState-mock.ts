@@ -6,6 +6,5 @@ export const initialState: AppState = {
     }, 
     alerts: {
       alerts: []
-    },
-    contacts: null
+    }
   }
