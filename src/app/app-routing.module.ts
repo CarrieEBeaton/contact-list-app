@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
+// Routing should be to the container component where it interacts with the store and fetches the data - The contact module
+// routes to the ContactContainerComponent
 
 const routes: Routes = [{
   path: '', pathMatch: 'full', redirectTo: 'home'

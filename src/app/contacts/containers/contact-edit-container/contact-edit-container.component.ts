@@ -15,14 +15,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ContactEditContainerComponent implements OnInit {
 
+  // Application metadata is returned as observables from services
+  // An observable is a data type that manages asynchronous data fetched from the service.
+  // The parent component subscribes to changes in data that come from the service
   selectedContact$: Observable<Contact> = this.store.select(getSelectedContact);
 
   constructor(public store: Store<AppState>, private activedRoute: ActivatedRoute) {
   }
 
-  // To keep our components pure and prevent mutating state, I use ngrx to dispatch actions
-  // and create a unidirectional data flow to call the service and return the data and set the data on the store. 
-  // The selectors can be used to get the data from the store
+  // Again, for maintainability – it is recommended that you use state management
+  // The store decouples component interaction because the component receiving the data does not know what caused the data to change, only that it has a new value
+  // The component should only talk to the store which will subscribe to changes in the data that come from the service
+  // The async pipe subscribes to an Observable returns the latest value it has emitted. 
+  // When the component gets destroyed, the async pipe is automatically unsubscribing from that data to avoid potential memory leaks.
   ngOnInit() {
     this.activedRoute.params.subscribe((params) => {
       if (params.id !== 0) {

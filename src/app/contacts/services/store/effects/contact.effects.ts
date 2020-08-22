@@ -16,6 +16,9 @@ import {
     UpdateContact, UpdateContactSuccess, UpdateContactFailure
 } from '../actions/contact.actions';
 
+// A state management layer handles the difficult problem of separating state management from the rest of the application.
+// This will keep components pure and handle side-effects related to business logic.
+
 @Injectable()
 export class ContactEffects {
     constructor(

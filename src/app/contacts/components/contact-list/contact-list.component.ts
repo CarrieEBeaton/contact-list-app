@@ -9,6 +9,8 @@ import { Contact } from '../../models/contact';
 })
 export class ContactListComponent implements OnInit {
 
+  // Presentation components display data on a form template to present it to the UI and emit changes to the data back to the parent
+  // This pattern improves testability b/c each section will serve a single function
   @Input() contacts: Contact[];
   @Output() deleteContact = new EventEmitter<Contact>();
 

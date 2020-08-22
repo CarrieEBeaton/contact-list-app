@@ -17,12 +17,15 @@ export class ContactContainerComponent implements OnInit, OnDestroy {
   contacts$: Observable<Contact[]> = this.store.select(getContacts);
   subscription$: Subscription;
 
+  // Structuring components as container component and presentational helps with separation of concerns
+  // Each section addresses a separate concern which simplifies development and make each section easier to maintain
+  // Container components set up dependencies for the services and talks to the service to retrieve or send data
   constructor(public store: Store<AppState>) {
 
   }
 
-  // To keep our components pure and prevent mutating state, I use ngrx to dispatch actions
-  // and create a unidirectional data flow to call the service and return the data and set the data on the store. 
+  // To keep our components pure and prevent mutating state, I use ngrx to call the service 
+  // and return the data and set the data on the store. 
   // The selectors can be used to get the data from the store 
   ngOnInit() {
     this.subscription$ = this.contacts$.subscribe((contacts) => {
