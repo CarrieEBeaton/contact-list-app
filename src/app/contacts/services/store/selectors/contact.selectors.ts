@@ -1,6 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ContactState } from '../state/contact.state';
 
+// Create a feature selector for contracts and it will be appended to app state when 
+// lazy loaded to this module
 const getContactFeatureState = createFeatureSelector<ContactState>('contacts');
 
 export const getContacts = createSelector(

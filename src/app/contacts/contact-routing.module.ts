@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactContainerComponent } from "./containers/contact-container/contact-container.component";
 import { ContactEditContainerComponent } from './containers/contact-edit-container/contact-edit-container.component';
 
-const routes: Routes = [
+export const routes: Routes = [
     {
         path: '',
         component: ContactContainerComponent

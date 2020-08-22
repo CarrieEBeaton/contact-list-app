@@ -1,5 +1,7 @@
 import { FormGroup } from '@angular/forms';
 
+// Generic validator for reactive forms
+// Implemented as a class, not a service so it can retain the state for multiple forms
 export class GenericValidator {
     constructor(private validationMessages: { [key: string]: { [key: string]: string } }) { }
 

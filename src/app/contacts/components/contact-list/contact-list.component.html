@@ -1,3 +1,6 @@
+<!-- Tables are a great way to display data, but hey fall short on smaller devices -->
+<!-- Responsive design is about adjusting designs to accomodate different screen sizes -->
+<!-- In the SCSS @media queries are useed to detect smaller screen sizes and reformat the table to behave like a contact card -->
 <div class="container">
     <div class="row align-items-center mt-4">
         <div class="col-lg-12">
@@ -10,7 +13,7 @@
                         </div>
                     </form>
                     <div class="d-flex justify-content-end mb-2">
-                        <button [routerLink]="['create', 0]" type="button" class="btn btn-outline-primary">Create New</button>
+                        <button id="createBtn" [routerLink]="['create', 0]" type="button" class="btn btn-outline-primary">Create New</button>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -26,6 +29,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <!-- Here I used a pipe to filter data on search text to demonstrate my understanding of creating custom pipes 
+                                    and adding unit tests for those. If there is a lot of data you would not want to handle this client side and
+                                    would call a server to search for results -->
                                 <tr *ngFor="let contact of contacts | filter: this.filter.value">
                                     <td>
                                         <ngb-highlight id="first-name" class="ml-2" [result]="contact.firstName"
@@ -53,8 +59,9 @@
                                         </ngb-highlight>
                                     </td>
                                     <td class="d-flex flex-nowrap flex-row">
+                                        <!-- A reusable modal component was used here that allow for custimizable title's, messages, icons, commands, and it will emit an event when a button is clicked-->
                                         <app-modal [title]="'Delete'" [message]="'Are you sure you want to delete?'" [icon]="'fa fa-trash'" [command]="'Delete'" (submit)="delete(contact)"></app-modal>
-                                        <a class="btn btn-primary circle m-2" role="button" aria-disabled="true" [routerLink]="['create', contact._id]"><i class="fa fa-pencil" aria-hidden="true"></i></a>                                    
+                                        <a id="editLink" class="btn btn-primary circle m-2" role="button" aria-disabled="true" [routerLink]="['create', contact._id]"><i class="fa fa-pencil" aria-hidden="true"></i></a>                                    
                                     </td>
                                 </tr>
                             </tbody>
