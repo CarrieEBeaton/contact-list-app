@@ -11,6 +11,7 @@ import { getIsLoading } from './store/loading.selectors';
 })
 export class LoadingComponent implements OnInit {
 
+  // A loading screen helps the user know that the app is waiting for a response from a server
   isLoading: Observable<boolean> = this.store.select(getIsLoading);
 
   constructor(public store: Store<AppState>) { }

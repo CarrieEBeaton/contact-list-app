@@ -13,6 +13,8 @@ import { RemoveAlert } from '../store/alert.actions';
 })
 export class AlertSuccessComponent implements OnInit {
 
+  // A toast is used to let the user know they successfully added, deleted or editing a contact.  
+  // It is self-closing and is a user-friendly way to let the user know the action was successful
   alerts: Observable<Alert[]> = this.store.select(getAlerts);
 
   constructor(public store: Store<AppState>) { }

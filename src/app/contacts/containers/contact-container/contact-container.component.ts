@@ -21,6 +21,9 @@ export class ContactContainerComponent implements OnInit, OnDestroy {
 
   }
 
+  // To keep our components pure and prevent mutating state, I use ngrx to dispatch actions
+  // and create a unidirectional data flow to call the service and return the data and set the data on the store. 
+  // The selectors can be used to get the data from the store 
   ngOnInit() {
     this.subscription$ = this.contacts$.subscribe((contacts) => {
       if (contacts.length === 0) {

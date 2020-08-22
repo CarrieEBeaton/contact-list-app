@@ -16,10 +16,12 @@ const routes: Routes = [{
   component: ErrorPageComponent
 },
 {
+  // It uses lazy loading to lad the contact feature dependencies.
   path: 'contacts',
   loadChildren: './contacts/contact.module#ContactModule'
 },
 {
+  // Routing redirects to an error page when the page the route is not found.  
   path: '**',
   redirectTo: '/not-found'
 }

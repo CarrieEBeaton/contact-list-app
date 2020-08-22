@@ -39,6 +39,7 @@ export class ContactEffects {
                         type: 'danger',
                         message: error  
                     };
+                    // An array of actions can be dispatched on sussess or error to turn off the loading and add alerts
                     return [
                         new AddAlert(alert),
                         new GetContactsFailure(error),
@@ -58,6 +59,7 @@ export class ContactEffects {
                         type: 'success',
                         message: 'Successfully created contact!'
                     };
+                    // An array of actions can be dispatched on sussess or error to turn off the loading and add alerts
                     return [
                         new HideLoading(),
                         new AddAlert(alert),

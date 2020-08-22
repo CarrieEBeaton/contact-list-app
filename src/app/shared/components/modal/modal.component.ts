@@ -8,6 +8,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent implements OnInit {
 
+  // Inputs and Outputs ensure this component can be reused beyond the delete alert message
   @Input() title: string;
   @Input() message: string;
   @Input() icon: string;

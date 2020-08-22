@@ -13,6 +13,7 @@ import { AppState } from 'src/app/app-state/app.state';
 })
 export class AlertOtherComponent implements OnInit {
 
+  //  An alert is set across the top to let the user know if there is a server error.
   alerts: Observable<Alert[]> = this.store.select(getAlerts);
 
   constructor(public store: Store<AppState>) { }

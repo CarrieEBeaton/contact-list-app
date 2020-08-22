@@ -2,6 +2,8 @@ import { ContactState, intialContactState } from '../contacts/services/store/sta
 import { AlertState, initialAlertState } from '../alerts/store/alert.reducers';
 import { LoadingState, initialLoadingState } from '../loading/store/loading.reducers';
 
+// Global application state for alerts and loading
+// Features will use the feature selectors to be appended onto the state when lazy loaded to the page
 export interface AppState {
     loading: LoadingState;
     alerts: AlertState;

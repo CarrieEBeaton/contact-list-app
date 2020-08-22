@@ -1,6 +1,5 @@
 import { Alert } from 'src/app/alerts/models/alert';
-import { getAlerts } from 'src/app/alerts/store/alert.selectors';
-
+// Global testing mocks stored in shared for reuse
 export const ALERT: Alert[] = [{
     type: 'success',
     message: 'Successfully created contact!'

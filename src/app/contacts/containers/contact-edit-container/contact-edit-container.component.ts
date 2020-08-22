@@ -20,6 +20,9 @@ export class ContactEditContainerComponent implements OnInit {
   constructor(public store: Store<AppState>, private activedRoute: ActivatedRoute) {
   }
 
+  // To keep our components pure and prevent mutating state, I use ngrx to dispatch actions
+  // and create a unidirectional data flow to call the service and return the data and set the data on the store. 
+  // The selectors can be used to get the data from the store
   ngOnInit() {
     this.activedRoute.params.subscribe((params) => {
       if (params.id !== 0) {
@@ -33,11 +36,13 @@ export class ContactEditContainerComponent implements OnInit {
   }
 
   newContact(contact): void {
+    // A global loading state was create and is set when actions are that call a service are dispatched
     this.store.dispatch(new ShowLoading());
     this.store.dispatch(new CreateContact(contact));
   }
 
-  updateContact(contact): void {    
+  updateContact(contact): void {
+        // A global loading state was create and is set when actions are that call a service are dispatched
     this.store.dispatch(new ShowLoading());
     this.store.dispatch(new UpdateContact(contact));
   }

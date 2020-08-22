@@ -1,5 +1,5 @@
 import { Contact } from '../../contacts/models/contact'
-
+// Global testing mocks stored in shared for reuse
 export class ContactMock {
     public static CONTACTS: Contact[] = [{
         _id: '5de91c005b98615393e74931',

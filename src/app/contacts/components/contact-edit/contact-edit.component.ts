@@ -31,13 +31,18 @@ export class ContactEditComponent implements OnInit {
   ngOnInit() {
     this.setUpForm();
     this.displayContact();
+    // When the form value changes, the error and warning messages will be processed to alert the user
     this.contactForm.valueChanges.subscribe(() => {
-        this.displayMessage = this.genericValidator.processMessages(this.contactForm);
-        this.errorMessage = this.genericValidator.getWarningMessages(this.contactForm);
+      // The process messages adds display messages for the inputs
+      this.displayMessage = this.genericValidator.processMessages(this.contactForm);
+      // A global warning message is added to the form to help the user understand why the create/update button is still disabled if
+      // They have not added a required field but have not touched the input control so there is no error displaying under the input
+      this.errorMessage = this.genericValidator.getWarningMessages(this.contactForm);
     });
   }
 
   setUpForm() {
+    // Validations were added per the requirements along with a phone number validator to demonstrate understanding of adding a custom validator
     this.contactForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -49,6 +54,7 @@ export class ContactEditComponent implements OnInit {
   }
 
   displayContact() {
+    // If there is an existing contact, the form values will be patched and the form name/button will be updated accordingly
     if (this.selectedContact) {
       this.pageTitle = 'Edit Contact';
       this.btnText = 'Update';
@@ -67,6 +73,7 @@ export class ContactEditComponent implements OnInit {
   }
 
   createValiationMessages() {
+    // These validation message are set up for the user to understand what went wrong when entering in data
     this.validationMessages = {
       firstName: {
         required: 'First name is required.'
@@ -94,14 +101,18 @@ export class ContactEditComponent implements OnInit {
   }
 
   blur(): void {
+    // When the user tabs out of the input, the validator will check for error messages to be displayed
     this.displayMessage = this.genericValidator.processMessages(this.contactForm);
   }
 
   saveContact() {
+    // When the user clicks save, a copy of the form values is made to ensure all values, even ones not on the form
+    // such as the id are retained
     if (this.contactForm.dirty && this.contactForm.valid) {
-      const contact: Contact = {...this.selectedContact, ...this.contactForm.value}
+      const contact: Contact = { ...this.selectedContact, ...this.contactForm.value }
 
       if (!contact._id) {
+        // This is just done for the purpose of this demo.  The server would handle this logic
         contact._id = uuid.v4();
         this.create.emit(contact);
       } else {

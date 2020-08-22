@@ -15,6 +15,7 @@ export class ContactService {
   }
 
   getContacts(): Observable<Contact[]> {
+    // The catch error could call a server to log errors but here it just logs to a console 
     return this.http.get<Contact[]>(this.contactUrl).pipe(
       catchError(this.handleError)
     );
@@ -38,11 +39,14 @@ export class ContactService {
   handleError(err: HttpErrorResponse) {
     let errorMessage: string;
     if (err.error instanceof ErrorEvent) {
+      // Log client-side or network error
       errorMessage = `An error occured: ${err.error.message}`;
     } else {
+      // Log server error with message to help us understand what went wrong
       errorMessage = `Server error code  ${err.status} ${err.statusText}: ${err.message}`;
     }
     console.log(err);
+    // Throw the error message up to be added to an alert message to alert the user
     return throwError(errorMessage);
   }
 }

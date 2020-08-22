@@ -13,7 +13,10 @@
                         </div>
                     </form>
                     <div class="d-flex justify-content-end mb-2">
-                        <button id="createBtn" [routerLink]="['create', 0]" type="button" class="btn btn-outline-primary">Create New</button>
+                         <!-- If there is no contact an id of 0 will be passed to the contact edit container so it knows it does not have to get an existing contact to 
+                        populate the form.  Instead it will navigate to the blank form-->
+                        <button id="createBtn" [routerLink]="['create', 0]" type="button"
+                            class="btn btn-outline-primary">Create New</button>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -33,6 +36,7 @@
                                     and adding unit tests for those. If there is a lot of data you would not want to handle this client side and
                                     would call a server to search for results -->
                                 <tr *ngFor="let contact of contacts | filter: this.filter.value">
+                                    <!-- ng-bootstrap used to create a searchable table and highlight the text when a search term matches a search result from the typeahead.   -->
                                     <td>
                                         <ngb-highlight id="first-name" class="ml-2" [result]="contact.firstName"
                                             [term]="filter.value">
@@ -43,25 +47,35 @@
                                             [term]="filter.value"></ngb-highlight>
                                     </td>
                                     <td>
-                                        <ngb-highlight id="company" class="ml-2" [result]="contact.company" [term]="filter.value">
+                                        <ngb-highlight id="company" class="ml-2" [result]="contact.company"
+                                            [term]="filter.value">
                                         </ngb-highlight>
                                     </td>
                                     <td>
-                                        <ngb-highlight id="email" class="ml-2" [result]="contact.email" [term]="filter.value">
+                                        <ngb-highlight id="email" class="ml-2" [result]="contact.email"
+                                            [term]="filter.value">
                                         </ngb-highlight>
                                     </td>
                                     <td>
-                                        <ngb-highlight id="phone" class="ml-2" [result]="contact.phone" [term]="filter.value">
+                                        <ngb-highlight id="phone" class="ml-2" [result]="contact.phone"
+                                            [term]="filter.value">
                                         </ngb-highlight>
                                     </td>
                                     <td>
-                                        <ngb-highlight id="address" class="ml-2" [result]="contact.address" [term]="filter.value">
+                                        <ngb-highlight id="address" class="ml-2" [result]="contact.address"
+                                            [term]="filter.value">
                                         </ngb-highlight>
                                     </td>
                                     <td class="d-flex flex-nowrap flex-row">
                                         <!-- A reusable modal component was used here that allow for custimizable title's, messages, icons, commands, and it will emit an event when a button is clicked-->
-                                        <app-modal [title]="'Delete'" [message]="'Are you sure you want to delete?'" [icon]="'fa fa-trash'" [command]="'Delete'" (submit)="delete(contact)"></app-modal>
-                                        <a id="editLink" class="btn btn-primary circle m-2" role="button" aria-disabled="true" [routerLink]="['create', contact._id]"><i class="fa fa-pencil" aria-hidden="true"></i></a>                                    
+                                        <!-- From a design perspective we want the user alerted before they delete the object since it cannot be undone-->
+                                        <app-modal [title]="'Delete'" [message]="'Are you sure you want to delete?'"
+                                            [icon]="'fa fa-trash'" [command]="'Delete'" (submit)="delete(contact)">
+                                        </app-modal>
+                                        <!-- The edit link passes the router the contact id so that when it navigates to the edit page it gets the correct contact to populate the form-->
+                                        <a id="editLink" class="btn btn-primary circle m-2" role="button"
+                                            aria-disabled="true" [routerLink]="['create', contact._id]"><i
+                                                class="fa fa-pencil" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
