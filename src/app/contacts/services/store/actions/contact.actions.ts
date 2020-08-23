@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Contact } from 'src/app/contacts/models/contact';
 
-// To keep our components pure and prevent mutating state, I use ngrx to dispatch actions
 // NGRX creates a unidirectional data flow. When the user triggers an action, 
 // it gets dispatched and an effect calls the service and performs any side effects, and generates a new model
 export enum ContactActionTypes {

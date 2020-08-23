@@ -4,6 +4,9 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Contact } from '../models/contact';
 
+// Application metadata is returned as observables from services
+// An observable is a data type that manages asynchronous data fetched from the service.
+
 @Injectable({
   providedIn: 'root'
 })

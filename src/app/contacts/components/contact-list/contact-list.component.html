@@ -1,4 +1,4 @@
-<!-- Tables are a great way to display data, but hey fall short on smaller devices -->
+<!-- Tables are a great way to display data, but they fall short on smaller devices -->
 <!-- Responsive design is about adjusting designs to accomodate different screen sizes -->
 <!-- In the SCSS @media queries are useed to detect smaller screen sizes and reformat the table to behave like a contact card -->
 <div class="container">
@@ -67,7 +67,7 @@
                                         </ngb-highlight>
                                     </td>
                                     <td class="d-flex flex-nowrap flex-row">
-                                        <!-- A reusable modal component was used here that allow for custimizable title's, messages, icons, commands, and it will emit an event when a button is clicked-->
+                                        <!-- A reusable modal component was used here that allow for customizable title's, messages, icons, commands, and it will emit an event when a button is clicked-->
                                         <!-- From a design perspective we want the user alerted before they delete the object since it cannot be undone-->
                                         <app-modal [title]="'Delete'" [message]="'Are you sure you want to delete?'"
                                             [icon]="'fa fa-trash'" [command]="'Delete'" (submit)="delete(contact)">
