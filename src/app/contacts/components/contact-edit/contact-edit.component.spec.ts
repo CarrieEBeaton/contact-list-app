@@ -3,7 +3,7 @@ import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testi
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContactEditComponent } from './contact-edit.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ContactMock } from 'src/app/shared/testing/contact-mock';
+import { ContactMock } from 'src/app/contacts/testing/contact-mock';
 
 describe('ContactEditComponent', () => {
   let component: ContactEditComponent;

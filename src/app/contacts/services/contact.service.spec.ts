@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { Injector } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ContactService } from './contact.service';
-import { ContactMock } from '../../shared/testing/contact-mock';
+import { ContactMock } from '../testing/contact-mock';
 
 describe('ContactService', () => {
 

@@ -6,7 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { ContactMock } from '../../../shared/testing/contact-mock';
+import { ContactMock } from '../../testing/contact-mock';
 import { ContactListComponent } from '../../components/contact-list/contact-list.component';
 import { SearchPipe } from '../../pipes/search.pipe';
 import { ContactContainerComponent } from './contact-container.component';

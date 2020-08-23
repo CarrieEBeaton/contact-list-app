@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ContactMock } from '../../../shared/testing/contact-mock';
+import { ContactMock } from '../../testing/contact-mock';
 import { routes } from '../../contact-routing.module';
 import { ContactContainerComponent } from '../../containers/contact-container/contact-container.component';
 import { ContactEditContainerComponent } from '../../containers/contact-edit-container/contact-edit-container.component';

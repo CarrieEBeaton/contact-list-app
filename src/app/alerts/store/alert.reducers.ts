@@ -10,12 +10,14 @@ export const initialAlertState: AlertState = {
 
 export function alertReducer(state: AlertState = initialAlertState, action: AlertAction): AlertState {
     switch (action.type) {
+        // Append an alert to the collection
         case AlertActionTypes.AddAlert: {
             return {
                 ...state,
                 alerts:  [...state.alerts, action.payload]
             }
         }
+        // Remove an alert from the collection
         case AlertActionTypes.RemoveAlert: {
             return {
                 ...state,

@@ -18,7 +18,7 @@ const routes: Routes = [{
   component: ErrorPageComponent
 },
 {
-  // It uses lazy loading to lad the contact feature dependencies.
+  // It uses lazy loading to load the contact feature dependencies.
   path: 'contacts',
   loadChildren: './contacts/contact.module#ContactModule'
 },

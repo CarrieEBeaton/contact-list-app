@@ -1,6 +1,6 @@
 import { ContactState } from "../state/contact.state";
 import { GetContactsSuccess, GetContactsFailure, GetSelectedContact, CreateContactSuccess, CreateContactFailure, UpdateContactSuccess, UpdateContactFailure, DeleteContactSuccess, DeleteContactFailure } from '../actions/contact.actions';
-import { ContactMock } from '../../../../shared/testing/contact-mock';
+import { ContactMock } from '../../../testing/contact-mock';
 import * as fromContacts from './contact.reducer';
 
 describe('Contact Reducer', () => {

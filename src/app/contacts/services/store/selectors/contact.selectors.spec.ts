@@ -1,5 +1,5 @@
 import { ContactState } from "../state/contact.state";
-import { ContactMock } from '../../../../shared/testing/contact-mock';
+import { ContactMock } from '../../../testing/contact-mock';
 import * as contactReducers from './contact.selectors';
 
 const ERROR = 'ERROR';

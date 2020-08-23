@@ -7,6 +7,7 @@ export const initialLoadingState: LoadingState = {
     loading: false
 }
 
+// Toggles the loading boolean to turn it on and off
 export function loadingReducer(state: LoadingState = initialLoadingState, action: LoadingAction): LoadingState {
     switch (action.type) {
         case LoadingActionTypes.ShowLoading: {

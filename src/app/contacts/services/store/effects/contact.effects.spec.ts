@@ -6,7 +6,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable, of, throwError } from "rxjs";
 import { ALERT, getAlertMock } from 'src/app/shared/testing/alert-mock';
-import { ContactMock } from '../../../../shared/testing/contact-mock';
+import { ContactMock } from '../../../testing/contact-mock';
 import { ContactService } from '../../contact.service';
 import { ContactActions } from '../actions/contact.actions';
 import * as AlertAction from './../../../../alerts/store/alert.actions';

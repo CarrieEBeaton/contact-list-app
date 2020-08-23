@@ -14,7 +14,6 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { LoadingComponent } from './loading/loading.component';
 import { HeaderComponent } from './navigation/header/header.component';
 
-// The basic building blocks of an Angular application are NgModules
 // The first thing an Angular application has to do is load a root NgModule which declares everything the Angular application will need. 
 // It can group things together such as components, pipes and directives.
 // Services no longer need to be declared in the NgModule in the providers section
