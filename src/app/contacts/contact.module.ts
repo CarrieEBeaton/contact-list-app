@@ -17,7 +17,7 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
     imports: [
         CommonModule,
-        NgbModule, 
+        NgbModule,
         ReactiveFormsModule,
         FormsModule,
         StoreModule.forFeature('contacts', contactReducers),
@@ -27,9 +27,10 @@ import { SharedModule } from '../shared/shared.module';
     ],
     declarations: [
         ContactContainerComponent,
-         ContactListComponent, 
-         SearchPipe, 
-         ContactEditComponent, ContactEditContainerComponent
-        ]
+        ContactListComponent,
+        SearchPipe,
+        ContactEditComponent,
+        ContactEditContainerComponent
+    ]
 })
 export class ContactModule { }
