@@ -12,7 +12,6 @@ import { Contact } from '../../models/contact';
 })
 export class ContactEditComponent implements OnInit {
 
-  // Communication from the child to the parent component is through inputs/outputs.
   @Input() selectedContact: Contact;
   @Output() create = new EventEmitter<Contact>();
   @Output() update = new EventEmitter<Contact>();
@@ -44,7 +43,7 @@ export class ContactEditComponent implements OnInit {
   setUpForm() {
     // Reactive forms provide direct access to an underlying forms object model
     // Makes it easier to reuse forms, it is easier to scale and there is less setup for testing
-    // In a reactive forms, the source of truth is the component class. Validator functions are added directly to the form control model in the component class. 
+    // In a reactive forms, validator functions are added directly to the form control model in the component class. 
     // Angular then calls these functions whenever the value to the form control changes.
     // Validations were added per the requirements along with a phone number validator to demonstrate understanding of adding a custom validator
     this.contactForm = this.formBuilder.group({

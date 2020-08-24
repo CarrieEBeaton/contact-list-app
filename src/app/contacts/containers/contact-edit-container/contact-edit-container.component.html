@@ -1,3 +1,5 @@
+ <!-- The async pipe subscribes to an Observable returns the latest value it has emitted. 
+ When the component gets destroyed, the async pipe is automatically unsubscribing from that data to avoid potential memory leaks. -->
 <app-contact-edit [selectedContact]="selectedContact$ | async" (update)="updateContact($event)"
     (create)="newContact($event)">
     <app-contact-edit>

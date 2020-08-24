@@ -20,10 +20,8 @@ export class ContactEditContainerComponent implements OnInit {
 
   constructor(public store: Store<AppState>, private activedRoute: ActivatedRoute) {
   }
-  // The parent component subscribes to changes in data that come from the service
-  // The store decouples component interaction because the component receiving the data does not know what caused the data to change, only that it has a new value
-  // The async pipe subscribes to an Observable returns the latest value it has emitted. 
-  // When the component gets destroyed, the async pipe is automatically unsubscribing from that data to avoid potential memory leaks.
+
+  //	Here the activated routed is subscribed to in order to grab parameters passed in and get an existing contact for editing
   ngOnInit() {
     this.activedRoute.params.subscribe((params) => {
       if (params.id !== 0) {
