@@ -30,9 +30,7 @@ export class ContactListComponent implements OnInit {
   onSort() {
 
     const input = [...this.contacts];
-    const direction = this.sortDirection;
     this.updateSortDirection();
-    const newArray = this.contacts;
     const updatedArray = this.sort(input);
     this.contacts = updatedArray;
   }
