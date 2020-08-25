@@ -22,7 +22,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">First Name</th>
+                                    <th class="firstNameHeader" scope="col" (click)="onSort('firstName')">First Name</th>
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Company</th>
                                     <th scope="col">Email</th>
@@ -35,7 +35,7 @@
                                 <!-- Here I used a pipe to filter data on search text to demonstrate my understanding of creating custom pipes 
                                     and adding unit tests for those. If there is a lot of data you would not want to handle this client side and
                                     would call a server to search for results -->
-                                <tr *ngFor="let contact of contacts | filter: this.filter.value">
+                                <tr class="contactResults" *ngFor="let contact of contacts | filter: this.filter.value">
                                     <!-- ng-bootstrap used to create a searchable table and highlight the text when a search term matches a search result from the typeahead.   -->
                                     <td>
                                         <ngb-highlight id="first-name" class="ml-2" [result]="contact.firstName"
