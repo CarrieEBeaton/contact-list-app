@@ -13,17 +13,22 @@ export class GenericValidator {
             if (container.controls.hasOwnProperty(controlKey)) {
 
                 const c = container.controls[controlKey];
-                // If there is a validation message for the form control
-                if (this.validationMessages[controlKey]) {
-                    messages[controlKey] = '';
-                    // and the form control is dirty and has errors
-                    if ((c.dirty || c.touched) && c.errors) {
-                        Object.keys(c.errors).map(messageKey => {
-                            if (this.validationMessages[controlKey][messageKey]) {
-                                // add the messages to the display messages on the form to be viewed by the user on the controls
-                                messages[controlKey] += this.validationMessages[controlKey][messageKey] + ' ';
-                            }
-                        });
+                if (c instanceof FormGroup) {
+                    const childMessages = this.processMessages(c);
+                    Object.assign(messages, childMessages);
+                } else {
+                    // If there is a validation message for the form control
+                    if (this.validationMessages[controlKey]) {
+                        messages[controlKey] = '';
+                        // and the form control is dirty and has errors
+                        if ((c.dirty || c.touched) && c.errors) {
+                            Object.keys(c.errors).map(messageKey => {
+                                if (this.validationMessages[controlKey][messageKey]) {
+                                    // add the messages to the display messages on the form to be viewed by the user on the controls
+                                    messages[controlKey] += this.validationMessages[controlKey][messageKey] + ' ';
+                                }
+                            });
+                        }
                     }
                 }
             }

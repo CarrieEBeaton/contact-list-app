@@ -96,7 +96,7 @@ describe('ContactListComponent', () => {
   });
 
   it('should emit deleteContact on delete', () => {
-    const deleteContact = spyOn(component.deleteContact, 'emit');
+    const deleteContact = spyOn(component.deleteContact, 'emit').and.callThrough();
     component.delete(ContactMock.CONTACTS[0]);
     expect(deleteContact).toHaveBeenCalledWith(ContactMock.CONTACTS[0]);
   });
