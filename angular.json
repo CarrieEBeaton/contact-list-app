@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "contact-list-app"
+    }
+  },
+  "defaultProject": "contact-list-app",
+  "cli": {
+    "analytics": false
+  }
 }

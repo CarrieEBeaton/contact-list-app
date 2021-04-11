@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Contact } from '../models/contact';
+import { ContactMock } from '../testing/contact-mock';
 
 // Application metadata is returned as observables from services
 // An observable is a data type that manages asynchronous data fetched from the service.
@@ -19,9 +20,12 @@ export class ContactService {
 
   getContacts(): Observable<Contact[]> {
     // The catch error could call a server to log errors but here it just logs to a console 
-    return this.http.get<Contact[]>(this.contactUrl).pipe(
-      catchError(this.handleError)
-    );
+  
+    return of(this.getMockContacts());
+
+    //this.http.get<Contact[]>(this.contactUrl).pipe(
+    // catchError(this.handleError)
+    // );
   }
 
   createContact(contact: Contact): Observable<Contact> {
@@ -51,5 +55,9 @@ export class ContactService {
     console.log(err);
     // Throw the error message up to be added to an alert message to alert the user
     return throwError(errorMessage);
+  }
+
+  getMockContacts() {
+    return ContactMock.CONTACTS;
   }
 }
